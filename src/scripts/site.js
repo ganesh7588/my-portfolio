@@ -112,6 +112,72 @@
     });
   });
 
+  // Horizontal card scrollers: buttons, drag, keyboard, progress and focus dimming.
+  document.querySelectorAll("[data-scroller]").forEach(function (root) {
+    var track = root.querySelector(".scroller-track");
+    var items = Array.prototype.slice.call(track.children);
+    var prev = root.querySelector("[data-scroller-prev]");
+    var next = root.querySelector("[data-scroller-next]");
+    var idx = root.querySelector("[data-scroller-index]");
+    var bar = root.querySelector("[data-scroller-bar]");
+    var step = function () { return items[0] ? items[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth; };
+    var go = function (dir) { track.scrollBy({ left: dir * step(), behavior: reduce ? "auto" : "smooth" }); };
+    prev.addEventListener("click", function () { go(-1); });
+    next.addEventListener("click", function () { go(1); });
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+    });
+    var sync = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      var p = max > 0 ? track.scrollLeft / max : 1;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+      if (bar) bar.style.transform = "scaleX(" + Math.max(p, 1 / items.length) + ")";
+      var trackLeft = track.getBoundingClientRect().left;
+      var current = 0;
+      items.forEach(function (it, i) {
+        var off = it.getBoundingClientRect().left - trackLeft;
+        if (off < step() / 2) current = i;
+        it.classList.toggle("is-dim", off > track.clientWidth - step() / 3 || off < -step() / 2);
+      });
+      if (max > 0 && track.scrollLeft >= max - 2) current = items.length - 1;
+      if (idx) idx.textContent = String(current + 1).padStart(2, "0");
+    };
+    track.addEventListener("scroll", function () { requestAnimationFrame(sync); }, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+    // Drag to scroll with a mouse (touch already scrolls natively).
+    var startX = 0, startLeft = 0, moved = false, down = false;
+    track.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse") return;
+      down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) { moved = true; track.classList.add("is-dragging"); }
+      if (moved) track.scrollLeft = startLeft - dx;
+    });
+    window.addEventListener("pointerup", function () {
+      if (!down) return;
+      down = false;
+      if (moved) {
+        track.classList.remove("is-dragging");
+        var i = Math.round(track.scrollLeft / step());
+        track.scrollTo({ left: i * step(), behavior: reduce ? "auto" : "smooth" });
+      }
+    });
+    // Spotlight follows the pointer inside each card.
+    root.querySelectorAll(".card--situation").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  });
+
   // Design-system token demo.
   var themes = {
     light: { "--d-bg": "#f6f6f2", "--d-surface": "#ffffff", "--d-ink": "#111111", "--d-muted": "#5c5c63", "--d-line": "#e3e3dc", "--d-accent": "#1b36ff", "--d-accent-ink": "#ffffff" },

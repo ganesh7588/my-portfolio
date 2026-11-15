@@ -148,7 +148,8 @@ button { font: inherit; color: inherit; }
 
 .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-6); align-items: end; margin-bottom: var(--s-8); padding-bottom: var(--s-5); border-bottom: 1px solid var(--border); }
 .section--band .section-head { border-color: var(--band-line); }
-.section-head--wide > div { grid-column: 1 / -1; }
+.section-head--wide { grid-template-columns: minmax(0, 1fr) auto; }
+.section-head--wide > div:only-child { grid-column: 1 / -1; }
 .section-head > div { display: flex; flex-direction: column; gap: var(--s-3); }
 .section-head p { color: var(--text-muted); max-width: 52ch; }
 @media (max-width: 820px) { .section-head { grid-template-columns: 1fr; align-items: start; } }
@@ -576,3 +577,35 @@ table.data td:first-child { color: var(--text); font-weight: 500; }
 .mt-3 { margin-top: var(--s-3); } .mt-5 { margin-top: var(--s-5); } .mt-7 { margin-top: var(--s-7); } .mt-9 { margin-top: var(--s-9); }
 .mb-5 { margin-bottom: var(--s-5); }
 .max-40 { max-width: 40ch; } .max-60 { max-width: 60ch; }
+
+/* ---------- Horizontal card scroller ---------- */
+.scroller { display: flex; flex-direction: column; gap: var(--s-5); }
+.scroller-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s-4); }
+.scroller-count { font-family: var(--font-mono); font-size: var(--fs-xs); letter-spacing: .08em; color: var(--text-subtle); font-variant-numeric: tabular-nums; }
+.scroller-count span { color: var(--accent); font-weight: 600; }
+.scroller-nav { display: flex; gap: var(--s-2); }
+.scroller-nav .icon-btn { font-size: 18px; transition: border-color var(--t-fast), transform var(--t-fast) var(--ease), opacity var(--t-fast); }
+.scroller-nav .icon-btn:hover:not(:disabled) { transform: translateY(-1px); }
+.scroller-nav .icon-btn:active:not(:disabled) { transform: scale(.94); }
+.scroller-nav .icon-btn:disabled { opacity: .35; cursor: default; }
+.scroller-track { list-style: none; padding: var(--s-2) 2px var(--s-5); margin: 0 -2px; display: grid; grid-auto-flow: column; grid-auto-columns: min(84%, 520px); gap: var(--s-5); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; cursor: grab; }
+.scroller-track::-webkit-scrollbar { display: none; }
+.scroller-track.is-dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+.scroller-track.is-dragging a { pointer-events: none; }
+.scroller-track li { margin: 0; scroll-snap-align: start; }
+.card--situation { position: relative; height: 100%; min-height: 300px; overflow: hidden; isolation: isolate; padding: var(--s-7) var(--s-6); transition: transform var(--t-normal) var(--ease), border-color var(--t-normal), box-shadow var(--t-normal), opacity var(--t-slow) var(--ease); }
+.card--situation::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity var(--t-normal); background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), var(--accent-wash), transparent 70%); }
+.card--situation:hover, .card--situation:focus-visible { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow); }
+.card--situation:hover::before, .card--situation:focus-visible::before { opacity: 1; }
+.card--situation:active { transform: translateY(-1px) scale(.99); }
+.situation-n { font-family: var(--font-display); font-size: clamp(3rem, 2rem + 3vw, 4.5rem); font-weight: 750; line-height: .9; letter-spacing: -.04em; color: var(--border-strong); transition: color var(--t-normal), transform var(--t-normal) var(--ease); transform-origin: left bottom; }
+.card--situation:hover .situation-n, .card--situation:focus-visible .situation-n { color: var(--accent); transform: scale(1.06); }
+.card--situation h3 { font-size: var(--fs-xl); margin-top: var(--s-4); }
+.card--situation .link-arrow { margin-top: auto; }
+.card--situation:hover .link-arrow::after { transform: translateX(6px); }
+.scroller-item { transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); }
+.js .scroller-item.is-dim { opacity: .55; }
+.scroller-progress { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.scroller-progress span { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); transition: transform var(--t-normal) var(--ease); }
+@media (prefers-reduced-motion: reduce) { .scroller-track { scroll-behavior: auto; } .card--situation, .situation-n { transition: none; } }
+@media (max-width: 820px) { .section-head--wide { grid-template-columns: 1fr; } }

@@ -58,7 +58,23 @@ export function homePage(studies) {
     <div class="section-head section-head--wide">
       <div><p class="eyebrow">When teams bring me in</p><h2 id="sit-h">Three situations I've led through,<br> and would again.</h2></div>
     </div>
-    <div class="grid-3">${join(situations, (s) => `<a class="card reveal" href="work/${esc(s.slug)}/"><span class="card-n">${esc(s.n)}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p><span class="link-arrow">${esc(s.cta)}</span></a>`)}</div>
+    <div class="scroller" data-scroller>
+      <div class="scroller-bar">
+        <p class="scroller-count" aria-live="polite"><span data-scroller-index>01</span> / ${String(situations.length).padStart(2, "0")}</p>
+        <div class="scroller-nav">
+          <button type="button" class="icon-btn" data-scroller-prev aria-label="Previous situation">←</button>
+          <button type="button" class="icon-btn" data-scroller-next aria-label="Next situation">→</button>
+        </div>
+      </div>
+      <ul class="scroller-track" tabindex="0" aria-label="Situations, scroll sideways">
+        ${join(situations, (s) => `<li class="scroller-item"><a class="card card--situation" href="work/${esc(s.slug)}/">
+          <span class="situation-n" aria-hidden="true">${esc(s.n)}</span>
+          <h3>${esc(s.title)}</h3><p>${esc(s.body)}</p>
+          <span class="link-arrow">${esc(s.cta)}</span>
+        </a></li>`)}
+      </ul>
+      <div class="scroller-progress" aria-hidden="true"><span data-scroller-bar></span></div>
+    </div>
   </div>
 </section>
 
@@ -80,8 +96,8 @@ export function homePage(studies) {
 
 <section class="section" aria-labelledby="more-h">
   <div class="container">
-    <div class="section-head">
-      <div><p class="eyebrow">More work</p><h2 id="more-h">Products, platforms and audits beyond the case studies.</h2></div>
+    <div class="section-head section-head--wide">
+      <div><p class="eyebrow">More work</p><h2 id="more-h">Products, platforms and audits<br> beyond the case studies.</h2></div>
       <a class="link-arrow" href="projects/">All ${projects.length} projects</a>
     </div>
     <div class="grid-2">${join(named, (p) => `<a class="card reveal" href="projects/#${esc(p.id)}"><span class="card-n">${esc(p.category)} · ${esc(p.org)}</span><h3>${esc(p.publicName)}</h3><p>${esc(p.summary)}</p><span class="link-arrow">What I led</span></a>`)}</div>
