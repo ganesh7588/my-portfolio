@@ -178,6 +178,28 @@
     });
   });
 
+  // Typing effect on CTA headings, started when the heading scrolls into view.
+  document.querySelectorAll("[data-type]").forEach(function (h) {
+    var ghost = h.querySelector(".type-ghost");
+    var live = h.querySelector(".type-live");
+    if (!ghost || !live || reduce || !("IntersectionObserver" in window)) return;
+    var text = ghost.textContent;
+    var tio = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      tio.disconnect();
+      h.classList.add("is-typing");
+      var i = 0;
+      var tick = function () {
+        i += 1;
+        live.textContent = text.slice(0, i);
+        if (i < text.length) setTimeout(tick, text.charAt(i - 1) === "," ? 180 : 28);
+        else { h.classList.remove("is-typing"); h.classList.add("is-typed"); }
+      };
+      setTimeout(tick, 250);
+    }, { threshold: 0.6 });
+    tio.observe(h);
+  });
+
   // Design-system token demo.
   var themes = {
     light: { "--d-bg": "#f6f6f2", "--d-surface": "#ffffff", "--d-ink": "#111111", "--d-muted": "#5c5c63", "--d-line": "#e3e3dc", "--d-accent": "#1b36ff", "--d-accent-ink": "#ffffff" },

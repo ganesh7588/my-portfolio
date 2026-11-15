@@ -126,7 +126,7 @@ export function ctaBand(root, { eyebrow = "Work together", title = "If you're bu
   return `<section class="section--band cta-band">
   <div class="container stack stack--lg">
     <p class="eyebrow">${esc(eyebrow)}</p>
-    <h2>${esc(title)}</h2>
+    <h2 class="type-h" data-type><span class="visually-hidden">${esc(title)}</span><span class="type-ghost" aria-hidden="true">${esc(title)}</span><span class="type-live" aria-hidden="true"></span></h2>
     <p class="max-60">${esc(body)}</p>
     <div class="btn-row">
       <a class="btn btn--primary" href="${root}contact/">Start a conversation</a>

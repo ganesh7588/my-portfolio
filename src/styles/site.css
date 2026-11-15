@@ -556,7 +556,17 @@ table.data td:first-child { color: var(--text); font-weight: 500; }
 
 /* ---------- Footer ---------- */
 .cta-band { padding-block: var(--section-y); }
-.cta-band h2 { max-width: 20ch; }
+.cta-band h2 { max-width: 38ch; }
+/* Typing effect: the ghost copy reserves the final size so nothing jumps;
+   without JS or with reduced motion the ghost simply shows. */
+.type-h { position: relative; }
+.type-live { display: none; }
+.js .type-h.is-typing .type-ghost, .js .type-h.is-typed .type-ghost { visibility: hidden; }
+.js .type-h.is-typing .type-live, .js .type-h.is-typed .type-live { display: block; position: absolute; inset: 0; }
+.type-live::after { content: ""; display: inline-block; width: .08em; height: .9em; margin-left: .06em; vertical-align: -.08em; background: var(--band-accent); animation: caret 1s steps(1) infinite; }
+.type-h.is-typed .type-live::after { animation: caret 1s steps(1) 3; opacity: 0; }
+@keyframes caret { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .type-live::after { display: none; } }
 .site-footer { border-top: 1px solid var(--border); padding-block: var(--s-10) var(--s-7); }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: var(--s-7); }
 .footer-col { display: flex; flex-direction: column; gap: var(--s-3); list-style: none; padding: 0; }
