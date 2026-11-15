@@ -2,7 +2,7 @@ import { page, esc, join, ctaBand } from "../layout.mjs";
 import { hero, principles, situations, testimonials, profile } from "../../content/site.mjs";
 import { articles, featured } from "../../content/writing.mjs";
 import { projects } from "../../content/projects.mjs";
-import { freelance } from "../../content/freelance.mjs";
+import { featureSplit, isoCollage } from "../blocks.mjs";
 
 export function workCard(cs, root) {
   return `<a class="work-card reveal" href="${root}work/${esc(cs.slug)}/">
@@ -105,16 +105,16 @@ export function homePage(studies) {
 </section>
 
 <section class="section section--muted" aria-labelledby="sys-h">
-  <div class="container grid-2" style="align-items:center">
-    <div class="stack stack--lg">
-      <p class="eyebrow">Design systems</p>
-      <h2 id="sys-h">The system is what makes the volume possible.</h2>
-      <p class="lede">2,000 screens in four weeks. 3,000 across 30+ modules. Six surfaces on one library. How I build systems that make a new market a configuration task, not a rebuild.</p>
-      <a class="link-arrow" href="design-system/">How I build design systems</a>
-    </div>
-    <div class="stack">
-      ${join(freelance.offers.slice(0, 3), (o) => `<a class="card" href="freelance/#${esc(o.id)}"><span class="card-n">Freelance · ${esc(o.duration)}</span><h3>${esc(o.name)}</h3><p>${esc(o.for)}</p></a>`)}
-    </div>
+  <div class="container">
+    ${featureSplit({
+      id: "sys-h",
+      eyebrow: "Design systems",
+      title: "The system is what makes the volume possible",
+      lede: "2,000 screens in four weeks. 3,000 across 30+ modules. Six surfaces on one library. I build systems that make a new market a configuration task, not a rebuild.",
+      checks: ["Foundations before modules", "Brand arrives as tokens, not a style guide", "Governed like a product, with an owner and design QA"],
+      cta: { href: "design-system/", label: "How I build design systems" },
+      visual: isoCollage(),
+    })}
   </div>
 </section>
 

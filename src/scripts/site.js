@@ -200,6 +200,183 @@
     tio.observe(h);
   });
 
+  // Header shadow once the page has scrolled.
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > 8); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Stagger siblings that reveal together, and number list items for timed ticks.
+  document.querySelectorAll(".grid-2, .grid-3, .grid-4, .work-list, .outcomes").forEach(function (g) {
+    Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--stagger", i % 6); });
+  });
+  document.querySelectorAll(".checklist--quiet").forEach(function (ul) {
+    Array.prototype.forEach.call(ul.children, function (li, i) { li.style.setProperty("--i", i); });
+  });
+
+  // Pointer glow inside cards.
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (fine) {
+    document.querySelectorAll(".card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  }
+
+  // Primary buttons lean slightly toward the pointer.
+  if (fine && !reduce) {
+    document.querySelectorAll(".btn--primary, .btn--accent").forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) / r.width;
+        var y = (e.clientY - r.top - r.height / 2) / r.height;
+        btn.style.transform = "translate(" + (x * 6).toFixed(1) + "px," + (y * 5 - 1).toFixed(1) + "px)";
+      });
+      btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
+    });
+  }
+
+  // Numbers count up the first time they are seen.
+  if ("IntersectionObserver" in window && !reduce) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        var el = en.target, full = el.textContent, m = full.match(/^([\d,]+)(.*)$/);
+        if (!m) return;
+        var target = parseInt(m[1].replace(/,/g, ""), 10), suffix = m[2], t0 = performance.now(), dur = 1100;
+        if (!(target > 1)) return;
+        var step = function (now) {
+          var p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 4);
+          el.textContent = Math.round(target * e).toLocaleString("en-US") + suffix;
+          if (p < 1) requestAnimationFrame(step); else el.textContent = full;
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll(".metric-num").forEach(function (el) { cio.observe(el); });
+    var bio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-seen"); bio.unobserve(en.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll(".chart").forEach(function (el) { bio.observe(el); });
+  } else {
+    document.querySelectorAll(".chart").forEach(function (el) { el.classList.add("is-seen"); });
+  }
+
+  // Token panel: switch collections.
+  document.querySelectorAll("[data-tp]").forEach(function (tp) {
+    var tabs = tp.querySelectorAll("[data-tp-tab]"), panels = tp.querySelectorAll("[data-tp-panel]");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var i = tab.getAttribute("data-tp-tab");
+        tabs.forEach(function (t) { t.setAttribute("aria-selected", String(t === tab)); });
+        panels.forEach(function (p) {
+          var on = p.getAttribute("data-tp-panel") === i;
+          p.hidden = !on;
+          p.classList.remove("is-switching");
+          if (on) { void p.offsetWidth; p.classList.add("is-switching"); p.parentNode.scrollTop = 0; }
+        });
+      });
+    });
+  });
+
+  // Angled component sheet: cards drop in, and the sheet tilts with the pointer.
+  document.querySelectorAll("[data-iso]").forEach(function (iso) {
+    iso.querySelectorAll(".iso-card").forEach(function (c, i) { c.style.setProperty("--n", i); });
+    if (!fine || reduce) return;
+    iso.addEventListener("pointermove", function (e) {
+      var r = iso.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      iso.style.setProperty("--rx", (56 - y * 8).toFixed(2) + "deg");
+      iso.style.setProperty("--rz", (-34 + x * 8).toFixed(2) + "deg");
+    });
+    iso.addEventListener("pointerleave", function () { iso.style.removeProperty("--rx"); iso.style.removeProperty("--rz"); });
+  });
+
+  // Footer: a grid of particles. A radial wave travels out from the pointer and bends
+  // the grid; a click sends a single ring. Runs only while the footer is on screen.
+  document.querySelectorAll("[data-particles]").forEach(function (host) {
+    var canvas = host.querySelector("canvas");
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext("2d");
+    var GAP = 26, dots = [], W = 0, H = 0, dpr = 1;
+    var mouse = { x: -9999, y: -9999, tx: -9999, ty: -9999, on: 0 };
+    var rings = [], raf = 0, visible = false, t0 = performance.now();
+
+    var build = function () {
+      var r = host.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dots = [];
+      var cols = Math.ceil(W / GAP) + 1, rows = Math.ceil(H / GAP) + 1;
+      var ox = (W - (cols - 1) * GAP) / 2, oy = (H - (rows - 1) * GAP) / 2;
+      for (var j = 0; j < rows; j++) for (var i = 0; i < cols; i++) dots.push(ox + i * GAP, oy + j * GAP);
+    };
+
+    var draw = function (now) {
+      var t = (now - t0) / 1000;
+      mouse.x += (mouse.tx - mouse.x) * 0.14; mouse.y += (mouse.ty - mouse.y) * 0.14;
+      ctx.clearRect(0, 0, W, H);
+      // With no pointer, a slow wave drifts across so the grid is never dead.
+      var cx = mouse.on ? mouse.x : W * (0.5 + 0.38 * Math.sin(t * 0.21));
+      var cy = mouse.on ? mouse.y : H * (0.5 + 0.3 * Math.cos(t * 0.17));
+      var amp = mouse.on ? 13 : 6, reach = mouse.on ? 300 : 380;
+      for (var k = 0; k < dots.length; k += 2) {
+        var x = dots[k], y = dots[k + 1];
+        var dx = x - cx, dy = y - cy, d = Math.sqrt(dx * dx + dy * dy) || 1;
+        var fall = Math.exp(-d / reach);
+        var wave = Math.sin(d * 0.05 - t * 3.2) * amp * fall;
+        var push = mouse.on ? 26 * Math.exp(-(d * d) / 9000) : 0;
+        var off = wave + push, glow = fall * (0.5 + 0.5 * Math.sin(d * 0.05 - t * 3.2));
+        for (var q = 0; q < rings.length; q++) {
+          var rg = rings[q], rdx = x - rg.x, rdy = y - rg.y, rd = Math.sqrt(rdx * rdx + rdy * rdy) || 1;
+          var age = t - rg.t, band = Math.exp(-Math.pow((rd - age * 520) / 46, 2)) * Math.max(0, 1 - age / 1.6);
+          x += (rdx / rd) * band * 22; y += (rdy / rd) * band * 22; glow += band;
+        }
+        x += (dx / d) * off; y += (dy / d) * off;
+        var g = Math.min(1, glow);
+        var size = 1.15 + g * 1.9;
+        ctx.fillStyle = g > 0.42 ? "rgba(255,154,98," + (0.35 + g * 0.6).toFixed(3) + ")" : "rgba(244,244,241," + (0.26 + g * 0.5).toFixed(3) + ")";
+        ctx.beginPath(); ctx.arc(x, y, size, 0, 6.2832); ctx.fill();
+      }
+      rings = rings.filter(function (r) { return t - r.t < 1.6; });
+      raf = visible ? requestAnimationFrame(draw) : 0;
+    };
+
+    var still = function () {
+      ctx.clearRect(0, 0, W, H); ctx.fillStyle = "rgba(244,244,241,.26)";
+      for (var k = 0; k < dots.length; k += 2) { ctx.beginPath(); ctx.arc(dots[k], dots[k + 1], 1, 0, 6.2832); ctx.fill(); }
+    };
+
+    build();
+    if (reduce) { still(); window.addEventListener("resize", function () { build(); still(); }); return; }
+    host.addEventListener("pointermove", function (e) {
+      var r = host.getBoundingClientRect();
+      mouse.tx = e.clientX - r.left; mouse.ty = e.clientY - r.top;
+      if (!mouse.on) { mouse.x = mouse.tx; mouse.y = mouse.ty; mouse.on = 1; }
+    });
+    host.addEventListener("pointerleave", function () { mouse.on = 0; });
+    host.addEventListener("pointerdown", function (e) {
+      var r = host.getBoundingClientRect();
+      rings.push({ x: e.clientX - r.left, y: e.clientY - r.top, t: (performance.now() - t0) / 1000 });
+      if (rings.length > 4) rings.shift();
+    });
+    if ("ResizeObserver" in window) new ResizeObserver(build).observe(host); else window.addEventListener("resize", build);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible && !raf) raf = requestAnimationFrame(draw);
+      }).observe(host);
+    } else { visible = true; raf = requestAnimationFrame(draw); }
+  });
+
   // Design-system token demo.
   var themes = {
     light: { "--d-bg": "#f6f6f2", "--d-surface": "#ffffff", "--d-ink": "#111111", "--d-muted": "#5c5c63", "--d-line": "#e3e3dc", "--d-accent": "#1b36ff", "--d-accent-ink": "#ffffff" },

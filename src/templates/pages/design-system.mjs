@@ -1,5 +1,5 @@
 import { page, esc, join, ctaBand } from "../layout.mjs";
-import { systemDemo } from "../blocks.mjs";
+import { systemDemo, tokenPanel, isoCollage, featureSplit } from "../blocks.mjs";
 
 const principles = [
   { n: "01", title: "Foundations before modules", body: "Tokens, type, spacing, elevation, accessibility and grid come first. The first weeks produce no visible screens, and that is a decision I defend, not apologise for.", proof: ["nivara-credit-card", "Nivara: what I'd lock even earlier"] },
@@ -32,6 +32,7 @@ const colours = [
   { name: "Ink subtle", token: "--ink-subtle", hex: "#66666d", note: "5.5:1 on paper · metadata" },
   { name: "Signal", token: "--signal", hex: "#1b36ff", note: "6.8:1 on paper · links, focus" },
   { name: "Signal wash", token: "--signal-wash", hex: "#eceefe", note: "Highlight surfaces" },
+  { name: "Flare", token: "--flare", hex: "#c2410c", note: "5.0:1 on paper · section labels" },
 ];
 
 const contrast = [
@@ -40,14 +41,16 @@ const contrast = [
   ["Ink subtle on paper", "#66666d / #fcfcfa", "5.5:1", "AA"],
   ["Signal on paper", "#1b36ff / #fcfcfa", "6.8:1", "AA"],
   ["Signal on signal wash", "#1b36ff / #eceefe", "6.0:1", "AA"],
+  ["Flare on paper", "#c2410c / #fcfcfa", "5.0:1", "AA"],
+  ["Dark: flare on ground", "#ff9a62 / #0d0d10", "9.3:1", "AAA"],
   ["Dark: text on ground", "#f1f1ee / #0d0d10", "17.1:1", "AAA"],
   ["Dark: signal on ground", "#93a2ff / #0d0d10", "8.2:1", "AAA"],
 ];
 
 const type = [
-  ["Display", "--fs-display", "clamp(40 → 84px)", "font-family:var(--font-display);font-size:clamp(2rem,1.4rem + 2.6vw,3.25rem);font-weight:650;letter-spacing:-.035em;line-height:1", "Decide weekly."],
-  ["Heading 2", "--fs-h2", "clamp(30 → 48px)", "font-family:var(--font-display);font-size:var(--fs-h2);font-weight:650;letter-spacing:-.022em;line-height:1.05", "Hold the decision."],
-  ["Heading 3", "--fs-h3", "clamp(20 → 26px)", "font-family:var(--font-display);font-size:var(--fs-h3);font-weight:650", "The challenge map"],
+  ["Display", "--fs-display", "clamp(40 → 84px)", "font-family:var(--font-display);font-size:clamp(2rem,1.4rem + 2.6vw,3.25rem);font-weight:450;letter-spacing:-.03em;line-height:1", "Decide weekly."],
+  ["Heading 2", "--fs-h2", "clamp(30 → 48px)", "font-family:var(--font-display);font-size:var(--fs-h2);font-weight:450;letter-spacing:-.025em;line-height:1.05", "Hold the decision."],
+  ["Heading 3", "--fs-h3", "clamp(20 → 26px)", "font-family:var(--font-display);font-size:var(--fs-h3);font-weight:500", "The challenge map"],
   ["Lede", "--fs-lg", "18px", "font-size:var(--fs-lg);color:var(--text-muted)", "Research did not decorate this brief. It changed it."],
   ["Body", "--fs-md", "16px", "font-size:var(--fs-md)", "Every request was handled as part of a shared pattern."],
   ["Eyebrow", "--fs-xs mono", "12px", "font-family:var(--font-mono);font-size:var(--fs-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--text-subtle)", "Phase 02 · Discovery"],
@@ -78,7 +81,35 @@ export function designSystemPage() {
   </div>
 </section>
 
-<section class="section" id="approach" style="padding-top:0" aria-labelledby="ap-h">
+<section class="section section--feature" aria-labelledby="ft-tokens">
+  <div class="container">
+    ${featureSplit({
+      id: "ft-tokens",
+      eyebrow: "One source of truth",
+      title: "One token layer for design and code",
+      lede: "Change a colour, a radius or a typeface once and every screen follows, in the design file and in the build. This panel shows the tokens this site actually runs on.",
+      checks: ["Light and dark are value swaps, not redesigns", "Semantic names on top of raw values", "A partner brand is a new set of values, not new code"],
+      cta: { href: "#this-site", label: "See this site's tokens" },
+      visual: tokenPanel(),
+    })}
+  </div>
+</section>
+
+<section class="section section--feature section--muted" aria-labelledby="ft-components">
+  <div class="container">
+    ${featureSplit({
+      id: "ft-components",
+      eyebrow: "Built once, used everywhere",
+      title: "Components that make volume safe",
+      lede: "Tables, forms, cards, steppers and status pills, each specified once with every state. A new feature is assembled from the library instead of drawn from scratch.",
+      checks: ["Every state specified, including errors and empty", "Same behaviour on Android, iOS and web", "New features arrive as extensions of the library"],
+      cta: { href: "#cov-h", label: "See the systems I've led" },
+      visual: isoCollage(),
+    })}
+  </div>
+</section>
+
+<section class="section" id="approach" aria-labelledby="ap-h">
   <div class="container">
     <div class="section-head"><div><p class="eyebrow">Approach</p><h2 id="ap-h">Six principles, each learned on a real project.</h2></div></div>
     <div class="grid-3">${join(principles, (p) => `<div class="card reveal"><span class="card-n">${esc(p.n)}</span><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p><a class="link-arrow" href="${root}work/${esc(p.proof[0])}/">${esc(p.proof[1])}</a></div>`)}</div>
@@ -123,7 +154,7 @@ export function designSystemPage() {
     </table></div>
 
     <h3 class="mt-7">Type</h3>
-    <p class="muted max-60">Archivo for display, Inter for reading, a system monospace for labels. Six steps, fluid between 390px and 1440px.</p>
+    <p class="muted max-60">Newsreader for display, Inter for reading, a system monospace for data. Six steps, fluid between 390px and 1440px.</p>
     <div class="type-scale">${join(type, (t) => `<div class="type-row"><span><strong>${esc(t[0])}</strong><br><code>${esc(t[1])} · ${esc(t[2])}</code></span><span style="${t[3]}">${esc(t[4])}</span></div>`)}</div>
 
     <div class="grid-2 mt-7">

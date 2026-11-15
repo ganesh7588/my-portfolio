@@ -51,7 +51,7 @@ export function page({ path, title, description, body, section, ogImage }) {
 <link rel="icon" href="${r("assets/img/site/mark.svg")}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Inter:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="${r("assets/site.css")}">
 <script>
   (function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}document.documentElement.classList.add("js");})();
@@ -80,8 +80,10 @@ export function page({ path, title, description, body, section, ogImage }) {
 <main id="main">
 ${body}
 </main>
-<footer class="site-footer">
-  <div class="container">
+<footer class="site-footer" data-particles>
+  <canvas class="footer-canvas" aria-hidden="true"></canvas>
+  <div class="container footer-inner">
+    <p class="footer-word" aria-hidden="true">Ganesh Gaikhe</p>
     <div class="footer-grid">
       <div class="footer-brand stack">
         <strong>${esc(profile.name)}</strong>

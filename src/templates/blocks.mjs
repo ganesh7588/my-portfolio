@@ -113,3 +113,79 @@ export function evidence(b, img) {
     default: return "";
   }
 }
+
+// ---------------------------------------------------------------------------
+// Feature sections: text on the left, a live visual on the right.
+// ---------------------------------------------------------------------------
+
+/** This site's real tokens, grouped the way a variables panel groups them. */
+const collections = [
+  { name: "Themes", rows: [
+    ["background", "paper", "#fcfcfa"], ["foreground", "ink", "#0b0b0c"], ["surface", "paper-raised", "#ffffff"],
+    ["surface-muted", "paper-sunken", "#f1f1ec"], ["text-muted", "ink-muted", "#4f4f55"], ["text-subtle", "ink-subtle", "#66666d"],
+    ["border", "line", "#e2e2dc"], ["border-strong", "line-strong", "#c9c9c0"], ["accent", "signal", "#1b36ff"],
+    ["accent-wash", "signal-wash", "#eceefe"], ["label", "flare", "#c2410c"],
+  ] },
+  { name: "Typography", rows: [
+    ["font-display", "Newsreader"], ["font-sans", "Inter"], ["font-mono", "ui-monospace"],
+    ["fs-display", "clamp 40 → 84px"], ["fs-h2", "clamp 30 → 48px"], ["fs-h3", "clamp 20 → 26px"],
+    ["fs-lg", "18px"], ["fs-md", "16px"], ["fs-sm", "14px"], ["fs-xs", "12px"],
+  ] },
+  { name: "Spacing", rows: [["s-1", "4px"], ["s-2", "8px"], ["s-3", "12px"], ["s-4", "16px"], ["s-5", "24px"], ["s-6", "32px"], ["s-7", "40px"], ["s-8", "48px"], ["s-9", "64px"], ["s-10", "80px"], ["s-11", "96px"], ["s-12", "128px"]] },
+  { name: "Radius", rows: [["r-sm", "6px"], ["r-md", "10px"], ["r-lg", "14px"], ["r-pill", "999px"]] },
+  { name: "Motion", rows: [["t-fast", "140ms"], ["t-normal", "220ms"], ["t-slow", "600ms"], ["ease", "cubic-bezier(.2,.8,.2,1)"], ["ease-enter", "cubic-bezier(.16,1,.3,1)"]] },
+];
+
+export const tokenPanel = () => `<div class="tp" data-tp>
+  <div class="tp-side">
+    <p class="tp-title"><span class="tp-dot" aria-hidden="true"></span>Collections</p>
+    <div class="tp-tabs" role="tablist" aria-label="Token collections">
+      ${join(collections, (c, i) => `<button type="button" role="tab" class="tp-tab" aria-selected="${i === 0}" data-tp-tab="${i}"><span>${esc(c.name)}</span><span class="tp-count">${c.rows.length}</span></button>`)}
+    </div>
+  </div>
+  <div class="tp-table">
+    ${join(collections, (c, i) => `<ul class="tp-rows" role="tabpanel" data-tp-panel="${i}"${i === 0 ? "" : " hidden"}>
+      ${join(c.rows, (r, j) => `<li style="--i:${j}"><span class="tp-name"><span class="tp-ico" aria-hidden="true"></span>${esc(r[0])}</span><span class="tp-val">${r[2] ? `<span class="tp-sw" style="background:${r[2]}" aria-hidden="true"></span>` : ""}${esc(r[1])}</span></li>`)}
+    </ul>`)}
+  </div>
+</div>`;
+
+/** An angled sheet of small components. Every figure on it comes from the case studies. */
+export const isoCollage = () => {
+  const signal = [["Rewards", 82], ["Add-on cards", 32], ["Travel", 22], ["Billing cycle", 21], ["Charges", 20], ["UPI", 19], ["Limits", 16]];
+  return `<div class="iso" data-iso aria-hidden="true">
+  <div class="iso-plane">
+    <div class="iso-card iso-card--wide" style="--z:0">
+      <span class="iso-label">Interview signal · n=45</span>
+      <div class="iso-bars">${join(signal, (s) => `<span style="--h:${Math.round((s[1] / 82) * 100)}%"${s[0] === "Rewards" || s[0] === "Charges" ? ' class="is-lead"' : ""}><i></i><b>${esc(s[0])}</b></span>`)}</div>
+    </div>
+    <div class="iso-card" style="--z:1"><span class="iso-label">Screens frozen</span><strong class="iso-kpi">2,000+</strong><span class="iso-sub">4 weekly cycles</span></div>
+    <div class="iso-card" style="--z:2"><span class="iso-label">Wednesday review</span><div class="iso-row"><span>Freeze decisions</span><span class="iso-toggle"></span></div><div class="iso-row"><span>Late ideas → next cycle</span><span class="iso-toggle"></span></div></div>
+    <div class="iso-card" style="--z:1"><span class="iso-label">Verify</span><div class="iso-otp"><span>4</span><span>2</span><span class="is-on">1</span><span></span></div><span class="iso-btn">Continue</span></div>
+    <div class="iso-card iso-card--wide" style="--z:3">
+      <span class="iso-label">QA queue</span>
+      <div class="iso-row"><span>INS-2041 · Roof</span><span class="iso-pill iso-pill--warn">Needs retake</span></div>
+      <div class="iso-row"><span>INS-2038 · Kitchen</span><span class="iso-pill iso-pill--ok">Approved</span></div>
+      <div class="iso-row"><span>INS-2033 · Exterior</span><span class="iso-pill">In review</span></div>
+    </div>
+    <div class="iso-card" style="--z:2"><span class="iso-label">Surfaces on one library</span><strong class="iso-kpi">6</strong><div class="iso-seg"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="iso-card" style="--z:0"><span class="iso-label">Tokens</span><div class="iso-swatches"><i style="background:#0b0b0c"></i><i style="background:#1b36ff"></i><i style="background:#c2410c"></i><i style="background:#eceefe"></i><i style="background:#f1f1ec"></i></div><span class="iso-sub">Light · Dark · Partner</span></div>
+    <div class="iso-card" style="--z:1"><span class="iso-label">Phase 1 scope</span><div class="iso-row"><span>Charges up front</span><span class="iso-check"></span></div><div class="iso-row"><span>Family cards</span><span class="iso-check"></span></div><div class="iso-row"><span>Two onboarding paths</span><span class="iso-check"></span></div></div>
+    <div class="iso-card iso-card--wide" style="--z:2"><span class="iso-label">Inspection journey</span><div class="iso-steps"><span class="is-done">Verify</span><span class="is-done">Profile</span><span class="is-done">Interior</span><span class="is-now">Exterior</span><span>Utilities</span><span>Quality check</span></div></div>
+  </div>
+</div>`;
+};
+
+/**
+ * @param {object} o  { eyebrow, title, lede, checks[], cta:{href,label}, visual (html), id, flip }
+ */
+export const featureSplit = (o) => `<div class="feature${o.flip ? " feature--flip" : ""}">
+  <div class="feature-copy reveal">
+    <p class="eyebrow eyebrow--accent">${esc(o.eyebrow)}</p>
+    <h2${o.id ? ` id="${esc(o.id)}"` : ""}>${esc(o.title)}</h2>
+    <p class="lede">${esc(o.lede)}</p>
+    <ul class="checklist checklist--quiet">${join(o.checks, (c) => `<li>${esc(c)}</li>`)}</ul>
+    ${o.cta ? `<a class="btn btn--secondary" href="${esc(o.cta.href)}">${esc(o.cta.label)}<span class="btn-arrow" aria-hidden="true">↗</span></a>` : ""}
+  </div>
+  <div class="feature-visual reveal">${o.visual}</div>
+</div>`;
