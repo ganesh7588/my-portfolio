@@ -55,8 +55,8 @@ export function homePage(studies) {
 
 <section class="section section--muted" aria-labelledby="sit-h">
   <div class="container">
-    <div class="section-head">
-      <div><p class="eyebrow">When teams bring me in</p><h2 id="sit-h">Three situations I've led through, and would again.</h2></div>
+    <div class="section-head section-head--wide">
+      <div><p class="eyebrow">When teams bring me in</p><h2 id="sit-h">Three situations I've led through,<br> and would again.</h2></div>
     </div>
     <div class="grid-3">${join(situations, (s) => `<a class="card reveal" href="work/${esc(s.slug)}/"><span class="card-n">${esc(s.n)}</span><h3>${esc(s.title)}</h3><p>${esc(s.body)}</p><span class="link-arrow">${esc(s.cta)}</span></a>`)}</div>
   </div>
