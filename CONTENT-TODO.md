@@ -4,7 +4,8 @@ The site ships with **no placeholders on screen**: `npm run check` fails the bui
 
 ## Client permissions
 - [ ] **Projects page**: BHIM, TMB, the public-sector bank card app, HFCB, AHIDF, The Privileged Club and the healthcare voucher work are shown with *descriptive* names (`publicName`). Set `nameApproved: true` in `src/content/projects.mjs` for each client who agrees to be named.
-- [ ] Confirm you're happy naming **FCB, Equitas and Orion180/PryzmIQ** (they were named on the previous portfolio).
+- [ ] **Case studies are white-labelled** under codenames (Nivara, Mahali, Aster360, MY360, Lumora). Check the codenames are free of clashes in your markets before going live. Screens still show real geography and currencies (Mahali: Malawi, Zambia, Botswana, Zimbabwe, MWK), which an informed reader could use to identify the client. Decide whether that is acceptable.
+- [ ] The testimonial on the Mahali case study names a real person and organisation. Confirm they are happy to be quoted on a white-labelled case study.
 - [ ] Confirm **IdentitySense** and **AuthSense** can be shown publicly as Winjit products.
 
 ## Facts to check
@@ -18,6 +19,6 @@ The site ships with **no placeholders on screen**: `npm run check` fails the bui
 - [ ] **One sourced outcome metric per case study** (activation, KYC completion, QA turnaround, cycle time). Each "what I won't claim" section can then become a real result.
 - [ ] **CV**: add a PDF to `src/assets/` and set `profile.resume` in `src/content/site.mjs`. The download button appears automatically.
 - [ ] **Project imagery**: the Projects page is text-only. Add a cover image per project when clients approve.
-- [ ] A second and third **testimonial** (Equitas, Orion180).
-- [ ] Higher-resolution **FCB cover** (the current one is 1136×300).
+- [ ] A second and third **testimonial** (Nivara, Aster360).
+- [ ] Higher-resolution **Mahali cover** (the current one is 1136×300).
 - [ ] Point **ganeshgaikhe.com** at GitHub Pages (canonical and OG URLs already use it).

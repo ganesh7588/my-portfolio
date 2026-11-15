@@ -2,12 +2,12 @@ import { page, esc, join, ctaBand } from "../layout.mjs";
 import { systemDemo } from "../blocks.mjs";
 
 const principles = [
-  { n: "01", title: "Foundations before modules", body: "Tokens, type, spacing, elevation, accessibility and grid come first. The first weeks produce no visible screens, and that is a decision I defend, not apologise for.", proof: ["equitas-credit-card", "Equitas: what I'd lock even earlier"] },
-  { n: "02", title: "Brand arrives as tokens, not a style guide", body: "Colour, type and spacing reach screens as variables. A complete dark theme becomes a change of values, not a redesign.", proof: ["fcb-market-entry", "FCB: dark theme from a token change"] },
-  { n: "03", title: "Configure, don't fork", body: "Market, partner and segment differences become settings in the system. A new market or white-label client is set up through configuration, not a new codebase.", proof: ["fcb-market-entry", "FCB: four markets, one product"] },
-  { n: "04", title: "Motion and states live in the system", body: "Transitions, error states, empty states and loading are specified once, so they behave the same on Android, iOS and web.", proof: ["fcb-market-entry", "FCB: motion inside the system"] },
-  { n: "05", title: "Govern it like a product", body: "A system needs an owner, a contribution path, a changelog and design QA. Without those it slowly falls apart as the organisation grows.", proof: ["orion180-pryzmiq", "Orion180: two years of governance"] },
-  { n: "06", title: "Measure the system's value from day one", body: "Agree up front how you'll measure cycle time, rework and coverage. The biggest gap in my Orion180 story is that nobody measured the baseline.", proof: ["orion180-pryzmiq", "Orion180: the lesson"] },
+  { n: "01", title: "Foundations before modules", body: "Tokens, type, spacing, elevation, accessibility and grid come first. The first weeks produce no visible screens, and that is a decision I defend, not apologise for.", proof: ["nivara-credit-card", "Nivara: what I'd lock even earlier"] },
+  { n: "02", title: "Brand arrives as tokens, not a style guide", body: "Colour, type and spacing reach screens as variables. A complete dark theme becomes a change of values, not a redesign.", proof: ["mahali-market-entry", "Mahali: dark theme from a token change"] },
+  { n: "03", title: "Configure, don't fork", body: "Market, partner and segment differences become settings in the system. A new market or white-label client is set up through configuration, not a new codebase.", proof: ["mahali-market-entry", "Mahali: four markets, one product"] },
+  { n: "04", title: "Motion and states live in the system", body: "Transitions, error states, empty states and loading are specified once, so they behave the same on Android, iOS and web.", proof: ["mahali-market-entry", "Mahali: motion inside the system"] },
+  { n: "05", title: "Govern it like a product", body: "A system needs an owner, a contribution path, a changelog and design QA. Without those it slowly falls apart as the organisation grows.", proof: ["aster360-lumora", "Aster360: two years of governance"] },
+  { n: "06", title: "Measure the system's value from day one", body: "Agree up front how you'll measure cycle time, rework and coverage. The biggest gap in my Aster360 story is that nobody measured the baseline.", proof: ["aster360-lumora", "Aster360: the lesson"] },
 ];
 
 const anatomy = [
@@ -19,9 +19,9 @@ const anatomy = [
 ];
 
 const coverage = [
-  ["FCB", "Retail banking app", "Android · iOS", "Brand from zero, tokens, motion spec, dark theme"],
-  ["Equitas", "Credit card app", "Mobile", "IA + tokens + component library across 30+ modules"],
-  ["Orion180 & PryzmIQ", "Insurance ecosystem", "Web · PWA · native", "One system across six surfaces, governance and design QA"],
+  ["Mahali", "Retail banking app", "Android · iOS", "Brand from zero, tokens, motion spec, dark theme"],
+  ["Nivara", "Credit card app", "Mobile", "IA + tokens + component library across 30+ modules"],
+  ["Aster360 & Lumora", "Insurance ecosystem", "Web · PWA · native", "One system across six surfaces, governance and design QA"],
   ["IdentitySense", "KYC SDK", "Mobile · desktop", "White-label theming through tokens, no code per partner"],
 ];
 
@@ -94,7 +94,7 @@ export function designSystemPage() {
 
 <section class="section" aria-labelledby="demo-h">
   <div class="container stack stack--lg">
-    <div class="section-head" style="margin-bottom:0"><div><p class="eyebrow">See it work</p><h2 id="demo-h">Three surfaces, one set of tokens.</h2></div><p>A working example of the Orion180 idea: a customer portal, an ops queue and a capture screen, all drawing from the same variables. Change a token and every surface follows.</p></div>
+    <div class="section-head" style="margin-bottom:0"><div><p class="eyebrow">See it work</p><h2 id="demo-h">Three surfaces, one set of tokens.</h2></div><p>A working example of the Aster360 idea: a customer portal, an ops queue and a capture screen, all drawing from the same variables. Change a token and every surface follows.</p></div>
     ${systemDemo()}
   </div>
 </section>

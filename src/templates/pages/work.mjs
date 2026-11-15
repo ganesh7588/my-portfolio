@@ -109,7 +109,7 @@ export function processPage(slugTitles) {
 
 <section class="section section--band" aria-labelledby="par-h">
   <div class="container grid-2" style="align-items:center">
-    <div class="stack stack--lg"><p class="eyebrow">Compressed timelines</p><h2 id="par-h">${esc(p.parallel.title)}</h2><p>${esc(p.parallel.body)}</p><a class="link-arrow" href="${root}work/fcb-market-entry/">See it at FCB</a></div>
+    <div class="stack stack--lg"><p class="eyebrow">Compressed timelines</p><h2 id="par-h">${esc(p.parallel.title)}</h2><p>${esc(p.parallel.body)}</p><a class="link-arrow" href="${root}work/mahali-market-entry/">See it at Mahali</a></div>
     <div class="gantt" role="img" aria-label="Research, design, system and weekly review tracks overlapping across four weeks">
       ${join(p.parallel.tracks, (t) => `<div class="gantt-row"><span>${esc(t.name)}</span><span class="gantt-lane"><span class="gantt-bar${t.weekly ? " gantt-bar--weekly" : ""}" style="left:${t.span[0]}%;width:${t.span[1] - t.span[0]}%"></span></span></div>`)}
       <div class="gantt-weeks">${join(p.parallel.weeks, (w) => `<span>${esc(w)}</span>`)}</div>

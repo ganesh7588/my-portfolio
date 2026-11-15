@@ -16,7 +16,7 @@ const icon = {
 /**
  * Render a full page.
  * @param {object} o
- * @param {string} o.path   output path relative to site root, e.g. "work/fcb-market-entry/"
+ * @param {string} o.path   output path relative to site root, e.g. "work/mahali-market-entry/"
  * @param {string} o.title  page title (without the name suffix)
  * @param {string} o.description
  * @param {string} o.body   page HTML
@@ -110,7 +110,7 @@ ${body}
       </ul>
     </div>
     <div class="footer-bottom">
-      <span>© ${new Date().getFullYear()} ${esc(profile.name)}. Every number on this site is sourced; anything unmeasured is labelled as such.</span>
+      <span>© ${new Date().getFullYear()} ${esc(profile.name)}. Client names and branding in case studies are changed for confidentiality. Every number is sourced.</span>
       <a href="${r("design-system/")}">How this site is built</a>
     </div>
   </div>

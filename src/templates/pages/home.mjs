@@ -39,7 +39,7 @@ export function homePage(studies) {
         </div>
       </div>
     </div>
-    <p class="proof"><strong>Recent work with</strong> ${join(hero.proof, (p) => `<span>${esc(p)}</span>`)}</p>
+    <p class="proof"><strong>Recent work for</strong> ${join(hero.proof, (p) => `<span>${esc(p)}</span>`)}</p>
   </div>
 </section>
 

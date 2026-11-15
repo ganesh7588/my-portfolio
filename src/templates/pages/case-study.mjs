@@ -38,6 +38,7 @@ export function caseStudyPage(cs, next) {
   <h1 class="mt-5">${esc(cs.heroTitle[0])}<em>${esc(cs.heroTitle[1])}</em></h1>
   <p class="cs-dek">${esc(cs.dek)}</p>
   <dl class="facts">${join(cs.facts, ([k, v]) => `<div><dt class="eyebrow">${esc(k)}</dt><dd>${esc(v)}</dd></div>`)}</dl>
+  <p class="cs-note">Client name, logos and identifying details have been changed for confidentiality.</p>
   <div class="cs-cover"><img src="${img(cs.cover.src)}" alt="${esc(cs.cover.alt)}" fetchpriority="high"></div>
 </header>
 

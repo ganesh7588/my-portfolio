@@ -1,10 +1,10 @@
-// FCB — market entry in four weeks.
+// Mahali — market entry in four weeks.
 // Every fact in this file comes from the published portfolio and project records.
 // Do not add metrics that cannot be sourced (see CONTENT-TODO.md).
 
 export default {
-  slug: "fcb-market-entry",
-  client: "FCB",
+  slug: "mahali-market-entry",
+  client: "Mahali",
   order: 2,
   card: {
     title: "A market entry with four weeks on the clock",
@@ -12,9 +12,9 @@ export default {
     tags: ["Retail banking", "Design system", "Brand from zero"],
   },
   heroTitle: ["Four people, 2,000 screens, and a market that had ", "never heard of us."],
-  dek: "FCB needed its entry product for a new market on Android and iOS, on a one-month deadline, as one global solution rather than a regional fork. No brand, no design system, no customers we had met. This is how the month was run, and the six problems we hit along the way.",
+  dek: "Mahali needed its entry product for a new market on Android and iOS, on a one-month deadline, as one global solution rather than a regional fork. No brand, no design system, no customers we had met. This is how the month was run, and the six problems we hit along the way.",
   domain: "Retail banking · Southern Africa",
-  cover: { src: "img/fcb/cover.png", alt: "FCB banking app screens: account overview, country selection, transfers, loan calculator and card management" },
+  cover: { src: "img/mahali/cover.png", alt: "Mahali banking app screens: account overview, country selection, transfers, loan calculator and card management" },
   facts: [
     ["My role", "Design Lead: direction, cadence, stakeholders"],
     ["Team", "2 UI designers, 1 UX researcher, me"],
@@ -28,7 +28,7 @@ export default {
   ],
   brief: {
     lede: "The month worked because of operating decisions made in week one, not because of any single screen.",
-    situation: "FCB's entry into a new regional market, and the top priority on its roadmap.",
+    situation: "Mahali's entry into a new regional market, and the top priority on its roadmap.",
     constraint: "Launch in one month, and launch as one global solution rather than a patchwork of regional fixes. Those two demands pull against each other.",
     mandate: "Own all of it: set direction, build a working rhythm for four people, keep stakeholder input from derailing the schedule, and still ship something customers in an unfamiliar market would trust.",
   },
@@ -97,7 +97,7 @@ export default {
         cost: "Saying yes took longer. Several stakeholders waited days for an answer a quick local fix would have given them in an hour.",
       },
       evidence: [
-        { type: "figure", src: "img/fcb/synthesis.png", constrained: true, alt: "Research synthesis artefact mapping findings across the four markets", caption: "The synthesis artefact that settled the fork-versus-configure argument. Laid out side by side, the market differences turned out to be settings, not separate products." },
+        { type: "figure", src: "img/mahali/synthesis.png", constrained: true, alt: "Research synthesis artefact mapping findings across the four markets", caption: "The synthesis artefact that settled the fork-versus-configure argument. Laid out side by side, the market differences turned out to be settings, not separate products." },
       ],
       unlocked: "A new market became a configuration task, not a rebuild. That is the reason the same design could serve the markets that came after.",
     },
@@ -113,15 +113,15 @@ export default {
         "Specified every state of the core transfer flow, failures included, before any visual polish.",
       ],
       evidence: [
-        { type: "figure", src: "img/fcb/transfer-flow.png", constrained: true, alt: "The core transfer and payment flow across multiple app states", caption: "The flow we protected above all others: a transfer that a first-time digital banking user can finish without leaving the screen to ask someone." },
+        { type: "figure", src: "img/mahali/transfer-flow.png", constrained: true, alt: "The core transfer and payment flow across multiple app states", caption: "The flow we protected above all others: a transfer that a first-time digital banking user can finish without leaving the screen to ask someone." },
         {
           type: "figpair",
           items: [
-            { src: "img/fcb/brand-states.png", alt: "Screen states rendered in the new brand identity", caption: "The brand applied as tokens rather than a style guide. Colour, type and spacing reached the screens as variables." },
-            { src: "img/fcb/motion-spec.png", alt: "Motion specification for key interface transitions", caption: "Motion specified once in the system, so the same transition behaves the same on both platforms." },
+            { src: "img/mahali/brand-states.png", alt: "Screen states rendered in the new brand identity", caption: "The brand applied as tokens rather than a style guide. Colour, type and spacing reached the screens as variables." },
+            { src: "img/mahali/motion-spec.png", alt: "Motion specification for key interface transitions", caption: "Motion specified once in the system, so the same transition behaves the same on both platforms." },
           ],
         },
-        { type: "compare", before: "img/fcb/home-light.png", after: "img/fcb/home-dark.png", beforeLabel: "Light", afterLabel: "Dark", alt: "The FCB account home screen in light and dark themes", caption: "Drag to compare. A complete dark theme made by changing token values, not by redesigning screens: same components, same layout, different values." },
+        { type: "compare", before: "img/mahali/home-light.png", after: "img/mahali/home-dark.png", beforeLabel: "Light", afterLabel: "Dark", alt: "The Mahali account home screen in light and dark themes", caption: "Drag to compare. A complete dark theme made by changing token values, not by redesigning screens: same components, same layout, different values." },
       ],
       unlocked: "Review time went on decisions, not on spotting mismatched buttons. Volume stopped being the risk.",
     },
@@ -152,7 +152,7 @@ export default {
       title: "Proving it with the people who would actually use it",
       challenge: "A product designed in four weeks for an unfamiliar market had to be tested with real customers before release, with no time left for a second round of redesign.",
       moves: [
-        "Ran usability testing with actual FCB customers, not internal proxies.",
+        "Ran usability testing with actual Mahali customers, not internal proxies.",
         "Fixed the core flows on that evidence and focused the last days on the transfer and home journeys.",
         "Handed over a system, not a set of screens, so later markets and themes could build on it.",
       ],
@@ -176,7 +176,7 @@ export default {
   outcomes: {
     measured: [
       { title: "Delivered on the deadline", body: "Shipped on Android and iOS inside the one-month window, as one configurable solution rather than a regional one-off.", source: "Release" },
-      { title: "Validated before launch", body: "Usability testing with actual FCB customers. The core flows were fixed on that evidence before release.", source: "Test sessions, week 4" },
+      { title: "Validated before launch", body: "Usability testing with actual Mahali customers. The core flows were fixed on that evidence before release.", source: "Test sessions, week 4" },
       { title: "Foundations that outlived the project", body: "The design system and brand identity became the base for later markets and themes, including a full dark theme made without redesigning screens.", source: "Design system" },
     ],
     notMeasured: {

@@ -262,7 +262,8 @@ a.card:hover { transform: translateY(-2px); }
 .cs-hero h1 { max-width: 20ch; }
 .cs-hero h1 em { font-style: normal; color: var(--accent); }
 .cs-dek { font-size: var(--fs-lg); color: var(--text-muted); max-width: 64ch; margin-top: var(--s-5); }
-.cs-cover { margin-top: var(--s-9); overflow: hidden; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface-muted); }
+.cs-note { margin-top: var(--s-4); font-size: var(--fs-xs); color: var(--text-subtle); }
+.cs-cover { margin-top: var(--s-7); overflow: hidden; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface-muted); }
 .cs-cover img { width: 100%; }
 .cs-cover--constrained img { max-width: 1136px; margin-inline: auto; }
 .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-5); padding-block: var(--s-6); border-block: 1px solid var(--border); margin-top: var(--s-8); }

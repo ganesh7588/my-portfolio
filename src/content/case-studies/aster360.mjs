@@ -1,8 +1,8 @@
-// Orion180 & PryzmIQ — one system, six surfaces, a two-year engagement.
+// Aster360 & Lumora — one system, six surfaces, a two-year engagement.
 
 export default {
-  slug: "orion180-pryzmiq",
-  client: "Orion180 & PryzmIQ",
+  slug: "aster360-lumora",
+  client: "Aster360 & Lumora",
   order: 3,
   card: {
     title: "An insurance ecosystem that had outgrown its own foundations",
@@ -10,9 +10,9 @@ export default {
     tags: ["InsurTech", "Design system governance", "Service design"],
   },
   heroTitle: ["Five audiences, six surfaces, and ", "no shared foundation."],
-  dek: "Two years leading product design for the Orion180 insurance ecosystem and the PryzmIQ property-inspection platform. The work covered design-system governance, workflow design, and the delivery rhythm that got research into shipped screens. The interesting part is not the system. It is that inspections were failing at the photograph, not at the form.",
+  dek: "Two years leading product design for the Aster360 insurance ecosystem and the Lumora property-inspection platform. The work covered design-system governance, workflow design, and the delivery rhythm that got research into shipped screens. The interesting part is not the system. It is that inspections were failing at the photograph, not at the form.",
   domain: "InsurTech · United States",
-  cover: { src: "img/orion180/cover.png", alt: "Orion180 MY180 dashboards shown in light mode, dark mode and on mobile" },
+  cover: { src: "img/aster360/cover.png", alt: "Aster360 MY360 dashboards shown in light mode, dark mode and on mobile" },
   facts: [
     ["My role", "Lead Product Designer + Scrum facilitation"],
     ["Working with", "PMs, engineering leads, QA, inspection ops, customer success"],
@@ -20,8 +20,8 @@ export default {
     ["Scope", "Design system · web · PWA · native"],
   ],
   metrics: [
-    { num: "1", label: "design system replacing per-product pattern kits across the ecosystem", source: "Orion180 Design System" },
-    { num: "6", label: "surfaces on one foundation: Admin, Customer and Agent portals, ops tools, PryzmIQ native and PWA", source: "System coverage" },
+    { num: "1", label: "design system replacing per-product pattern kits across the ecosystem", source: "Aster360 Design System" },
+    { num: "6", label: "surfaces on one foundation: Admin, Customer and Agent portals, ops tools, Lumora native and PWA", source: "System coverage" },
     { num: "5", label: "audiences in one inspection chain: homeowner, inspector, concierge, QA reviewer, operations", source: "Workflow mapping" },
   ],
   brief: {
@@ -65,7 +65,6 @@ export default {
             { n: "03", title: "Operations carried the overhead", body: "QA review and admin work were full of repeated actions and slow turnaround. The biggest efficiency gains were in internal tools, not the customer app." },
           ],
         },
-        { type: "figure", src: "img/orion180/workflow-maps.png", alt: "Workflow maps and the end-to-end customer journey across the inspection pipeline", caption: "Mapping all five roles on one canvas made the capture failure visible. As a homeowner flow it looks like a form problem. As a chain, a rejected photo becomes concierge time, QA time and a second homeowner session." },
       ],
       unlocked: "The work was reframed: fix the capture moment and the internal tools, not just the customer form.",
     },
@@ -84,11 +83,13 @@ export default {
         title: "Build a centralised design system first",
         tension: "Fragmented patterns were slowing every feature. Fixing them meant slowing features for a while.",
         options: "Keep patching per platform. Maintain separate kits per product. Or invest up front in one tokenised system and a shared component library.",
-        choice: "One Orion180 Design System covering the Admin, Customer and Agent portals, internal ops tools, and PryzmIQ native and PWA.",
+        choice: "One Aster360 Design System covering the Admin, Customer and Agent portals, internal ops tools, and Lumora native and PWA.",
         cost: "Months of work with no visible feature. Defending that to a roadmap-driven organisation was the hardest part of the two years.",
       },
       evidence: [
-        { type: "figure", src: "img/orion180/design-system.png", alt: "Orion180 Design System: colour, KPI cards, inputs, buttons, typography, toasts and illustrations", caption: "One library behind six surfaces. The real test of a system is whether a new feature can be built from it. After this, new work drew from the library instead of starting fresh." },
+        { type: "figure", src: "img/aster360/design-system.png", alt: "Aster360 Design System: colour, KPI cards, inputs, buttons, typography, toasts and illustrations", caption: "One library behind six surfaces. The real test of a system is whether a new feature can be built from it. After this, new work drew from the library instead of starting fresh." },
+        { type: "figure", src: "img/aster360/workflow-maps.png", alt: "MY360 agent dashboards in light mode, dark mode and on mobile", caption: "The agent dashboard on desktop, in dark mode and on mobile: one set of components and tokens, three contexts. Before the system, each of these was solved separately." },
+        { type: "figure", src: "img/aster360/ai-capture.png", alt: "MY360 quoting flow: coverage options, a landlord policy form with map, payment and policy bound confirmation", caption: "Quoting and binding a policy in the agent portal, built entirely from the shared library: coverage cards, stepped forms, map input and confirmation states." },
         { type: "systemdemo" },
       ],
       unlocked: "New features started as extensions of the library, not fresh design projects, across all six surfaces.",
@@ -121,11 +122,8 @@ export default {
         },
       ],
       evidence: [
-        { type: "figure", src: "img/orion180/inspection-tracker.png", alt: "PryzmIQ inspection tracker showing guided capture categories, AI confidence scoring and QA review", caption: "The inspection tracker is where the chain becomes one product. The homeowner sees progress and requirements, the reviewer sees confidence scores and exceptions, and both look at the same record." },
-        { type: "figpair", items: [
-          { src: "img/orion180/ai-capture.png", alt: "AI-assisted image capture showing photo requirements and compliant-capture guidance", caption: "Homeowner capture: requirements shown when the photo is taken, not in a help article." },
-          { src: "img/orion180/concierge-qa.png", alt: "Concierge scheduling interface and the QA reviewer approval experience", caption: "Concierge and QA: the two internal tools that absorb the cost of a bad photo." },
-        ] },
+        { type: "figure", src: "img/aster360/inspection-tracker.png", alt: "Lumora inspection tracker showing guided capture categories, AI confidence scoring and QA review", caption: "The inspection tracker is where the chain becomes one product. The homeowner sees progress and requirements, the reviewer sees confidence scores and exceptions, and both look at the same record." },
+        { type: "figure", src: "img/aster360/concierge-qa.png", alt: "Lumora homeowner app: inspection progress, property profile, outdoor checklist and a photo guide showing where to stand and how to frame", caption: "The homeowner side of the chain: clear progress, a short property profile, a checklist of what to photograph, and a photo guide that shows where to stand and how to frame before the camera opens." },
       ],
       unlocked: "The capture problem was addressed where it starts, instead of downstream in QA.",
     },
@@ -178,8 +176,8 @@ export default {
   },
   outcomes: {
     measured: [
-      { title: "One system across six surfaces", body: "Admin, Customer and Agent portals, internal ops tools, and PryzmIQ native and PWA all use the same tokens and component library.", source: "Design system coverage" },
-      { title: "The capture failure fixed where it starts", body: "Guided, AI-assisted capture replaced help articles and static examples at the exact point where submissions were being rejected.", source: "PryzmIQ inspection journey" },
+      { title: "One system across six surfaces", body: "Admin, Customer and Agent portals, internal ops tools, and Lumora native and PWA all use the same tokens and component library.", source: "Design system coverage" },
+      { title: "The capture failure fixed where it starts", body: "Guided, AI-assisted capture replaced help articles and static examples at the exact point where submissions were being rejected.", source: "Lumora inspection journey" },
       { title: "Internal workflows designed, not inherited", body: "QA review and admin operations rebuilt around the reviewer's actual task.", source: "Ops tooling" },
     ],
     notMeasured: {

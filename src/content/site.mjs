@@ -32,7 +32,7 @@ export const hero = {
   eyebrow: "Product Design Lead · banking, credit, insurance",
   title: ["I lead design for financial products where ", "the hard part is everything around the screen."],
   lede: "A bank's first credit card in a 12-week phase. A market entry shipped on two platforms in four weeks. An insurance ecosystem unified on one design system over two years. Each one was won or lost on decisions about scope, cadence, stakeholders and systems, and those are the decisions I lead.",
-  proof: ["Equitas Small Finance Bank", "FCB", "Orion180", "Winjit Technologies"],
+  proof: ["a small finance bank in India", "a retail bank in Southern Africa", "a US property insurer", "Winjit Technologies"],
 };
 
 // The three operating principles, each tied to the project that proved it.
@@ -42,29 +42,29 @@ export const principles = [
     title: "Decide weekly, and hold the decision",
     body: "Deadlines are usually killed by open feedback loops, not hard problems. I run a fixed review where stakeholders are heard, and a freeze afterwards where decisions stay closed.",
     tradeoff: "The cost: a better idea that arrives on Thursday waits for the next cycle.",
-    proof: { label: "Proved at FCB", slug: "fcb-market-entry" },
+    proof: { label: "Proved at Mahali", slug: "mahali-market-entry" },
   },
   {
     n: "02",
     title: "The system is what makes the volume possible",
     body: "At three thousand screens, drawing each screen is the easy part and keeping them consistent is the hard part. Tokens and components come before modules, not alongside them.",
     tradeoff: "The cost: the first weeks produce foundations instead of screens, and that is uncomfortable to defend.",
-    proof: { label: "Proved at Equitas", slug: "equitas-credit-card" },
+    proof: { label: "Proved at Nivara", slug: "nivara-credit-card" },
   },
   {
     n: "03",
     title: "Criteria beat opinions",
     body: "Every significant decision is judged on the same five criteria (user evidence, business impact, technical feasibility, operational load, scalability) in front of the people it affects.",
     tradeoff: "The cost: it is slower than deciding in the room, and it sometimes rules against the nicer design.",
-    proof: { label: "Proved at Orion180", slug: "orion180-pryzmiq" },
+    proof: { label: "Proved at Aster360", slug: "aster360-lumora" },
   },
 ];
 
 // The situations I'm brought in for.
 export const situations = [
-  { n: "01", title: "Market entry under a hard deadline", body: "A product has to exist in a new market in weeks, on both platforms, with no brand and no system to build on.", slug: "fcb-market-entry", cta: "FCB, four weeks" },
-  { n: "02", title: "A first-of-its-kind product in a regulated category", body: "The institution has never shipped this product before. Research has to set the strategy, and compliance is involved from week one.", slug: "equitas-credit-card", cta: "Equitas, first credit card" },
-  { n: "03", title: "An ecosystem that outgrew its foundations", body: "Several products, several platforms, no shared language. Every new feature pays the inconsistency cost twice: once in design, once in build.", slug: "orion180-pryzmiq", cta: "Orion180, two years" },
+  { n: "01", title: "Market entry under a hard deadline", body: "A product has to exist in a new market in weeks, on both platforms, with no brand and no system to build on.", slug: "mahali-market-entry", cta: "Mahali, four weeks" },
+  { n: "02", title: "A first-of-its-kind product in a regulated category", body: "The institution has never shipped this product before. Research has to set the strategy, and compliance is involved from week one.", slug: "nivara-credit-card", cta: "Nivara, first credit card" },
+  { n: "03", title: "An ecosystem that outgrew its foundations", body: "Several products, several platforms, no shared language. Every new feature pays the inconsistency cost twice: once in design, once in build.", slug: "aster360-lumora", cta: "Aster360, two years" },
 ];
 
 export const testimonials = [
@@ -76,7 +76,7 @@ export const testimonials = [
 ];
 
 export const timeline = [
-  { when: "2019 — present", org: "Winjit Technologies", role: "Product Design Lead (UX Consultant)", body: "Design lead on client engagements in banking, credit, payments, identity and insurance. Owned research through to shipped system on Equitas, FCB and Orion180, including design-system governance, delivery rhythm and day-to-day work with product and engineering. Product design on Winjit's own IdentitySense and AuthSense platforms." },
+  { when: "2019 — present", org: "Winjit Technologies", role: "Product Design Lead (UX Consultant)", body: "Design lead on client engagements in banking, credit, payments, identity and insurance. Owned research through to shipped system on Nivara, Mahali and Aster360, including design-system governance, delivery rhythm and day-to-day work with product and engineering. Product design on Winjit's own IdentitySense and AuthSense platforms." },
   { when: "2017 — 2019", org: "DIFADBIZ", role: "UX Designer", body: "Product and platform work across B2B and consumer web, with a growing share of research and information architecture." },
   { when: "2016 — 2018", org: "Digiperfect", role: "UX Designer", body: "End-to-end interface design for web and mobile products, working directly with founders and small delivery teams." },
   { when: "2014 — 2016", org: "Vajrakaya", role: "Junior UX Designer", body: "Where I started: interaction design, prototyping, and my first real experience of designing within constraints set by someone else." },

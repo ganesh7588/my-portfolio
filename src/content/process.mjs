@@ -14,7 +14,7 @@ export const process = {
       lead: ["Turn the brief into a few operating decisions before any design work", "Agree success criteria, and how we will measure them, with the decision-makers", "Bring compliance, engineering and operations in on day one", "Draw the team's ownership lines"],
       artefacts: ["One-page mandate", "Success criteria & measurement plan", "Team ownership map"],
       gate: "Everyone who can say no has agreed what “done” means.",
-      seen: { slug: "fcb-market-entry", label: "FCB: three week-one decisions that saved the month" },
+      seen: { slug: "mahali-market-entry", label: "Mahali: three week-one decisions that saved the month" },
     },
     {
       id: "find",
@@ -24,7 +24,7 @@ export const process = {
       lead: ["Field research with customers and the staff behind the service", "Rank themes, and separate what people ask for from what they complain about", "Benchmark competitors feature by feature to find where to lead", "Map the whole chain of roles, not one user's flow"],
       artefacts: ["Interview synthesis", "Personas", "Competitive benchmark", "Journey map & service blueprint"],
       gate: "We can name the failure point and back it with evidence.",
-      seen: { slug: "orion180-pryzmiq", label: "Orion180: inspections failed at the photo, not the form" },
+      seen: { slug: "aster360-lumora", label: "Aster360: inspections failed at the photo, not the form" },
     },
     {
       id: "decide",
@@ -34,7 +34,7 @@ export const process = {
       lead: ["Link every scope item to an interview finding and a benchmark gap", "Weigh calls on five criteria: user, business, feasibility, operations, scale", "Write each decision down with its tension, options, choice and cost", "Say no to the wishlist in front of the people who wrote it"],
       artefacts: ["Phase scope", "Decision log", "Prioritised roadmap"],
       gate: "Every feature in scope can point to its evidence.",
-      seen: { slug: "equitas-credit-card", label: "Equitas: four Phase 1 bets, each traced to research" },
+      seen: { slug: "nivara-credit-card", label: "Nivara: four Phase 1 bets, each traced to research" },
     },
     {
       id: "system",
@@ -44,7 +44,7 @@ export const process = {
       lead: ["Set foundations before modules: tokens, type, spacing, accessibility, grid", "Apply brand and motion through the system, not per screen", "One information architecture for the whole product, built to extend", "Prefer configuration to forking: market differences become settings"],
       artefacts: ["Design tokens", "Component library", "IA map", "Motion spec"],
       gate: "A new screen can be built from the library without inventing anything.",
-      seen: { slug: "fcb-market-entry", label: "FCB: a full dark theme from a token change" },
+      seen: { slug: "mahali-market-entry", label: "Mahali: a full dark theme from a token change" },
     },
     {
       id: "ship",
@@ -54,7 +54,7 @@ export const process = {
       lead: ["Weekly review with stakeholders, followed by a hard freeze", "Design and development in parallel against one source of truth", "Scrum facilitation: dependencies tracked, blockers cleared daily", "Design QA owned by design, not left to chance"],
       artefacts: ["Weekly frozen output", "Specs & edge cases", "Design QA log"],
       gate: "Thursday's work builds on Wednesday's decisions. Nothing is reopened.",
-      seen: { slug: "orion180-pryzmiq", label: "Orion180: two years of predictable delivery" },
+      seen: { slug: "aster360-lumora", label: "Aster360: two years of predictable delivery" },
     },
     {
       id: "learn",
@@ -64,7 +64,7 @@ export const process = {
       lead: ["Usability testing with real customers, not internal stand-ins", "Fix core flows on the evidence before release", "Measure against the criteria agreed in Frame", "Write a reflection: what I would do differently next time"],
       artefacts: ["Test findings", "Release notes", "Measurement read-out", "Reflection"],
       gate: "We know what to claim, and what we cannot claim.",
-      seen: { slug: "fcb-market-entry", label: "FCB: tested with actual customers in week 4" },
+      seen: { slug: "mahali-market-entry", label: "Mahali: tested with actual customers in week 4" },
     },
   ],
   rituals: [

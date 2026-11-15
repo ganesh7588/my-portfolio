@@ -3,9 +3,9 @@ import { mkdir, writeFile, rm, cp } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import fcb from "../src/content/case-studies/fcb.mjs";
-import equitas from "../src/content/case-studies/equitas.mjs";
-import orion from "../src/content/case-studies/orion180.mjs";
+import mahali from "../src/content/case-studies/mahali.mjs";
+import nivara from "../src/content/case-studies/nivara.mjs";
+import aster from "../src/content/case-studies/aster360.mjs";
 import { homePage } from "../src/templates/pages/home.mjs";
 import { caseStudyPage } from "../src/templates/pages/case-study.mjs";
 import { workPage, projectsPage, processPage } from "../src/templates/pages/work.mjs";
@@ -17,7 +17,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(here, "..");
 const OUT = join(ROOT, "dist");
 
-const studies = [fcb, equitas, orion].sort((a, b) => a.order - b.order);
+const studies = [mahali, nivara, aster].sort((a, b) => a.order - b.order);
 
 const pages = new Map();
 pages.set("index.html", homePage(studies));

@@ -1,9 +1,9 @@
-// Equitas Small Finance Bank — a bank's first credit card.
+// Nivara Small Finance Bank — a bank's first credit card.
 // Facts sourced from the published portfolio and field-research records.
 
 export default {
-  slug: "equitas-credit-card",
-  client: "Equitas Small Finance Bank",
+  slug: "nivara-credit-card",
+  client: "Nivara Small Finance Bank",
   order: 1,
   card: {
     title: "A bank's first credit card, built on what customers already resented",
@@ -11,9 +11,9 @@ export default {
     tags: ["Credit cards", "Field research", "Design system"],
   },
   heroTitle: ["A first credit card, and every reason customers ", "distrust credit cards."],
-  dek: "Equitas Small Finance Bank's first credit card application, delivered end to end in a single 12-week Phase 1. Research, information architecture, design system and development ran in parallel. The strongest signal in 45 interviews was not rewards. It was that people did not trust what their card was charging them.",
+  dek: "Nivara Small Finance Bank's first credit card application, delivered end to end in a single 12-week Phase 1. Research, information architecture, design system and development ran in parallel. The strongest signal in 45 interviews was not rewards. It was that people did not trust what their card was charging them.",
   domain: "Credit cards · India",
-  cover: { src: "img/equitas/cover.png", alt: "Equitas credit card app: dashboard, card management, rewards and bill payment screens" },
+  cover: { src: "img/nivara/cover.png", alt: "Nivara credit card app: dashboard, card management, rewards and bill payment screens" },
   facts: [
     ["My role", "Product Design Lead: research to shipped system"],
     ["Team", "Researchers, UI designers, developers"],
@@ -21,7 +21,7 @@ export default {
     ["Scope", "3,000+ screens · 30+ modules"],
   ],
   metrics: [
-    { num: "45", label: "research participants over four days in Chennai, 16–19 October 2023", source: "Field research" },
+    { num: "45", label: "research participants over four days in South India, 16–19 October 2023", source: "Field research" },
     { num: "3,000+", label: "screens across 30+ modules, on one IA and one design system", source: "Project files" },
     { num: "14", label: "competitor products benchmarked feature by feature", source: "Competitive benchmark" },
   ],
@@ -52,7 +52,7 @@ export default {
       title: "Forty-five people told us what credit cards keep getting wrong",
       challenge: "Four days, 45 participants, two very different audiences, and a team that needed findings it could act on in week three, not a report in week six.",
       moves: [
-        "Ran focus groups and one-to-one interviews (30–60 minutes each) with stakeholders and customers in Chennai.",
+        "Ran focus groups and one-to-one interviews (30–60 minutes each) with stakeholders and customers in South India.",
         "Ranked themes by how often they came up, and kept separate what people asked for and what they complained about.",
         "Turned the findings into three personas the team designed against every week.",
       ],
@@ -91,7 +91,7 @@ export default {
       title: "A focused Phase 1, under pressure to ship the wishlist",
       challenge: "Rewards dominated every conversation, inside the bank and in interviews. A focused 12-week Phase 1 could not do everything, and every inclusion had to justify its place against that pressure.",
       moves: [
-        "Benchmarked 14 competitor products feature by feature, to see where Equitas could lead and where it only needed to match.",
+        "Benchmarked 14 competitor products feature by feature, to see where Nivara could lead and where it only needed to match.",
         "Linked every Phase 1 bet to both an interview finding and a gap in the benchmark.",
         "Argued internally for showing charges up front, including the numbers that are easier to sell when nobody mentions them.",
       ],
@@ -114,7 +114,7 @@ export default {
           title: "Custom billing cycle and UPI on the card, in Phase 1",
           tension: "Flexible billing (21 interviews) and UPI on credit card (19) were highly requested. Salaried users wanted due dates that matched payday.",
           options: "A fixed billing cycle like a traditional bank. UPI later. Or both in the launch feature set.",
-          choice: "Both, in Phase 1. These were the places where Equitas could lead on card services, not just match.",
+          choice: "Both, in Phase 1. These were the places where Nivara could lead on card services, not just match.",
           cost: "Two features the launch could have survived without took weeks that could have gone into rewards, the thing customers asked for loudest.",
         },
         {
@@ -126,7 +126,7 @@ export default {
         },
       ],
       evidence: [
-        { type: "figure", src: "img/equitas/benchmark.png", alt: "Competitive feature analysis grid, MVP versus aspirational feature mapping, and synthesised UX takeaways", caption: "The benchmark alongside the interview data. Fourteen products scored feature by feature showed almost no competitor offering in-app family cards or plain-language charge disclosure. That is how two of the four Phase 1 bets were chosen." },
+        { type: "figure", src: "img/nivara/benchmark.png", alt: "Competitive feature analysis grid, MVP versus aspirational feature mapping, and synthesised UX takeaways", caption: "The benchmark alongside the interview data. Fourteen products scored feature by feature showed almost no competitor offering in-app family cards or plain-language charge disclosure. That is how two of the four Phase 1 bets were chosen." },
       ],
       unlocked: "A Phase 1 scope where every feature could point to evidence. Scope arguments became much shorter.",
     },
@@ -146,10 +146,10 @@ export default {
           type: "stickystory",
           label: "How the Phase 1 bets show up in the product",
           steps: [
-            { n: "Bet", title: "Family cards, issued in-app", src: "img/equitas/family-cards.png", alt: "Family and friends add-on cards, relationship selection, and transaction history screens", body: "Add-on cards with sub-limits, one combined bill and dual OTP, issued without a branch visit. The clearest point of difference in Phase 1, and the most expensive module to build." },
-            { n: "Bet", title: "Charges, before the payment", src: "img/equitas/dashboard.png", alt: "Dashboard, billing, transaction control and card management screens", body: "Charges shown in plain language before a payment is confirmed, not after it on a statement. A weakness of the whole category turned into the product's argument for trust." },
-            { n: "Bet", title: "Onboarding that converges", src: "img/equitas/onboarding.png", alt: "Virtual card activation and onboarding flow from approval through limit setup to success", body: "Different checks for new-to-bank and existing customers, the same card at the end. Instant virtual cards without running two separate onboarding products." },
-            { n: "Foundation", title: "One library under all of it", src: "img/equitas/design-system.png", alt: "The Equitas design system: components, system illustrations and colour tokens", body: "Every module built from the same tokens and components. With 30+ modules, that is what made a weekly review possible." },
+            { n: "Bet", title: "Family cards, issued in-app", src: "img/nivara/family-cards.png", alt: "Family and friends add-on cards, relationship selection, and transaction history screens", body: "Add-on cards with sub-limits, one combined bill and dual OTP, issued without a branch visit. The clearest point of difference in Phase 1, and the most expensive module to build." },
+            { n: "Bet", title: "Charges, before the payment", src: "img/nivara/dashboard.png", alt: "Dashboard, billing, transaction control and card management screens", body: "Charges shown in plain language before a payment is confirmed, not after it on a statement. A weakness of the whole category turned into the product's argument for trust." },
+            { n: "Bet", title: "Onboarding that converges", src: "img/nivara/onboarding.png", alt: "Virtual card activation and onboarding flow from approval through limit setup to success", body: "Different checks for new-to-bank and existing customers, the same card at the end. Instant virtual cards without running two separate onboarding products." },
+            { n: "Foundation", title: "One library under all of it", src: "img/nivara/design-system.png", alt: "The Nivara design system: components, system illustrations and colour tokens", body: "Every module built from the same tokens and components. With 30+ modules, that is what made a weekly review possible." },
           ],
         },
       ],
@@ -162,12 +162,12 @@ export default {
       title: "Twelve weeks left no room to work in sequence",
       challenge: "Research fed IA, IA fed design, and design fed development, all overlapping. With a client team who had never shipped a card, decisions also had to be made where the client could see them, and then stay closed.",
       moves: [
-        "Ran weekly “Show me” reviews, walking Equitas through the app module by module, so feedback stayed on what was in front of them.",
-        "Ran two onsite workshops in Chennai mid-engagement to settle the hardest flows and compliance questions face to face.",
+        "Ran weekly “Show me” reviews, walking Nivara through the app module by module, so feedback stayed on what was in front of them.",
+        "Ran two onsite workshops in South India mid-engagement to settle the hardest flows and compliance questions face to face.",
         "Led researchers, designers and developers as one team, split along clean module boundaries against one source of truth.",
       ],
       evidence: [
-        { type: "quote", quote: "Across 45 interviews the message was consistent: people did not want more credit. They wanted control, clarity, and rewards they could actually understand.", attribution: "My summary of the Chennai research, and the sentence every module was checked against" },
+        { type: "quote", quote: "Across 45 interviews the message was consistent: people did not want more credit. They wanted control, clarity, and rewards they could actually understand.", attribution: "My summary of the field research, and the sentence every module was checked against" },
       ],
       unlocked: "3,000+ screens that stayed consistent, with decisions that stayed closed, inside a single phase.",
     },
@@ -193,10 +193,6 @@ export default {
       body: "I do not have verified post-launch issuance, activation or retention numbers for this card, so I am not publishing any. What I can show is the research, the decisions it drove, and what Phase 1 delivered in twelve weeks. If you want to test the thinking, read the strategy section.",
     },
   },
-  links: [
-    { href: "https://www.figma.com/design/cdrLa8TwnzBAg5A3Pvesbg/Equitas-Credit-Card-V1.1?node-id=7097-27560", text: "Figma · Credit Card V1.1" },
-    { href: "https://www.figma.com/design/nYjjIBKQ01iSYDcJqobsTm/Equitas-CC-2.0?node-id=2772-34262", text: "Figma · Credit Card V2.0" },
-  ],
   reflection: [
     { b: "Lock the design system before the screens, not alongside them.", rest: "Tokens and components were still forming while modules were already in progress. Freezing the foundation a week earlier would have removed real rework." },
     { b: "Bring development into reviews sooner.", rest: "Research and design were in sync from week one. Pulling developers into the weekly review earlier would have caught feasibility issues before the build." },
