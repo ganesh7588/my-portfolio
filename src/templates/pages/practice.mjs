@@ -1,6 +1,6 @@
 import { page, esc, join, ctaBand } from "../layout.mjs";
 import { freelance as f } from "../../content/freelance.mjs";
-import { articles, categories, drafts, framework, featured } from "../../content/writing.mjs";
+import { articles, categories, drafts, framework, featured, postHref, isExternal } from "../../content/writing.mjs";
 import { profile, aboutBio, timeline, capabilities, testimonials, principles } from "../../content/site.mjs";
 
 export function freelancePage() {
@@ -94,7 +94,7 @@ export function writingPage() {
 <section class="section" style="padding-top:0" aria-labelledby="feat-h">
   <div class="container">
     <div class="section-head"><div><p class="eyebrow">Start here</p><h2 id="feat-h">Three essays that explain how I think.</h2></div></div>
-    <div class="grid-3">${join(feat, (a) => `<a class="card reveal" href="${esc(a.url)}" rel="noopener"><span class="card-n">${esc(a.category)}</span><h3>${esc(a.title)}</h3><p>${esc(a.note)}</p><span class="link-arrow">Read on Medium</span></a>`)}</div>
+    <div class="grid-3">${join(feat, (a) => `<a class="card reveal" href="${esc(postHref(a, root))}"><span class="card-n">${esc(a.category)}</span><h3>${esc(a.title)}</h3><p>${esc(a.note)}</p><span class="link-arrow">Read the essay</span></a>`)}</div>
   </div>
 </section>
 
@@ -111,7 +111,7 @@ export function writingPage() {
     <div class="filters" role="group" aria-label="Filter essays by topic" data-filter-group="writing">
       ${join(["All", ...categories.map((c) => c.id)], (c, i) => `<button type="button" class="filter" data-filter="${esc(c)}" aria-pressed="${i === 0}">${esc(c)}</button>`)}
     </div>
-    <ul class="article-list" data-filter-list="writing">${join(articles, (a) => `<li data-category="${esc(a.category)}"><a class="article" href="${esc(a.url)}" rel="noopener"><span class="article-title">${esc(a.title)}</span><span class="article-cat">${esc(a.category)}</span><span class="article-note">${esc(a.note)}</span></a></li>`)}</ul>
+    <ul class="article-list" data-filter-list="writing">${join(articles, (a) => `<li data-category="${esc(a.category)}"><a class="article" href="${esc(postHref(a, root))}"${isExternal(a) ? ' rel="noopener"' : ""}><span class="article-title">${esc(a.title)}</span><span class="article-cat">${esc(a.category)}</span><span class="article-note">${esc(a.note)}</span></a></li>`)}</ul>
     <div class="stack mt-9">
       <p class="eyebrow">In draft</p>
       <div class="grid-2">${join(drafts, (d) => `<div class="card"><span class="card-n">${esc(d.category)} · coming soon</span><h3>${esc(d.title)}</h3><p>${esc(d.note)}</p></div>`)}</div>

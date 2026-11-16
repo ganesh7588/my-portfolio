@@ -792,3 +792,78 @@ table.data td:first-child { color: var(--text); font-weight: 500; }
 .footer-col a:hover { transform: translateX(4px); }
 .site-footer .link-arrow { color: var(--flare); }
 .site-footer ::selection { background: var(--flare); color: #0b0b0c; }
+
+/* ---------- Blog post ---------- */
+.post-hero { padding-block: clamp(48px, 7vw, 104px) var(--s-6); display: flex; flex-direction: column; gap: var(--s-5); max-width: 920px; }
+.post-hero h1 { font-size: clamp(2.4rem, 1.4rem + 3.6vw, 4.5rem); max-width: 20ch; }
+.post-dek { font-size: var(--fs-lg); color: var(--text-muted); max-width: 56ch; }
+.link-arrow--back::after { content: none; }
+.link-arrow--back::before { content: "←"; transition: transform var(--t-normal) var(--ease); }
+.link-arrow--back:hover::before { transform: translateX(-4px); }
+.post-byline { display: flex; align-items: center; gap: var(--s-3); padding-top: var(--s-5); border-top: 1px solid var(--border); font-size: var(--fs-sm); }
+.post-byline .brand-mark { width: 40px; height: 40px; border-radius: 10px; font-size: 20px; }
+.post-medium { margin-left: auto; color: var(--text-muted); text-decoration: none; font-size: var(--fs-sm); }
+.post-medium:hover { color: var(--text); }
+.post-layout { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.post-toc { position: sticky; top: 96px; display: flex; flex-direction: column; gap: var(--s-3); }
+.post-toc ol { list-style: none; padding: 0; }
+.post-toc li { margin: 0; }
+.post-toc a { display: block; padding: 8px 0; border-top: 1px solid var(--border); font-size: var(--fs-xs); color: var(--text-subtle); text-decoration: none; }
+.post-toc a:hover, .post-toc a.is-current { color: var(--text); }
+@media (max-width: 1000px) { .post-layout { grid-template-columns: 1fr; } .post-toc { display: none; } }
+.prose-post { font-size: 1.125rem; line-height: 1.75; color: var(--text); }
+.prose-post > * + * { margin-top: 1.1em; }
+.prose-post h2 { font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem); margin-top: 1.8em; scroll-margin-top: 90px; }
+.prose-post h3 { font-size: 1.25rem; margin-top: 1.5em; scroll-margin-top: 90px; }
+.prose-post p, .prose-post li { color: var(--text-muted); }
+.prose-post strong { color: var(--text); }
+.prose-post a { color: var(--accent); }
+.prose-post blockquote { margin: 1.6em 0; padding-left: var(--s-6); border-left: 2px solid var(--flare); font-family: var(--font-display); font-size: 1.5rem; line-height: 1.35; color: var(--text); }
+.prose-post blockquote p { color: inherit; }
+.prose-post hr { border: 0; height: 1px; background: var(--border); margin: 2.4em 0; }
+.prose-post code { font-family: var(--font-mono); font-size: .88em; background: var(--surface-muted); padding: .1em .35em; border-radius: 4px; }
+.post-fig { margin: 2em 0; }
+.post-fig img { border-radius: var(--r-lg); border: 1px solid var(--border); }
+.post-fig figcaption { font-size: var(--fs-sm); color: var(--text-subtle); margin-top: var(--s-2); }
+.post-standfirst { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.35; color: var(--text) !important; }
+.post-end { margin-top: var(--s-10); margin-left: calc(220px + clamp(32px, 6vw, 96px)); max-width: 720px; }
+@media (max-width: 1000px) { .post-end { margin-left: 0; } }
+
+/* ---------- Reactions ---------- */
+.react { border: 1px solid var(--border); border-radius: 20px; padding: clamp(20px, 3vw, 32px); background: var(--surface); display: flex; flex-direction: column; gap: var(--s-5); }
+.react-head h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.react-head p { font-size: var(--fs-sm); margin-top: var(--s-1); }
+.react-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+@media (max-width: 560px) { .react-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.react-btn { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: var(--s-4) var(--s-2) var(--s-3); border: 1px solid var(--border); border-radius: 16px; background: var(--bg); cursor: pointer; overflow: visible; transition: border-color var(--t-fast), background var(--t-fast), transform var(--t-fast) var(--ease), box-shadow var(--t-normal); }
+.react-btn:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: var(--shadow); }
+.react-btn:active { transform: scale(.95); }
+.react-btn[aria-pressed="true"] { border-color: var(--flare); background: color-mix(in srgb, var(--flare) 8%, var(--bg)); }
+.react-emoji { font-size: 30px; line-height: 1; transition: transform var(--t-normal) var(--ease); }
+.react-btn:hover .react-emoji { transform: translateY(-3px) rotate(-8deg) scale(1.12); }
+.react-btn.is-pop .react-emoji { animation: pop .55s var(--ease-enter); }
+@keyframes pop { 0% { transform: scale(1); } 35% { transform: scale(1.5) rotate(-12deg); } 60% { transform: scale(.9) rotate(6deg); } 100% { transform: scale(1); } }
+.react-label { font-size: var(--fs-xs); color: var(--text-subtle); font-weight: 500; }
+.react-btn[aria-pressed="true"] .react-label { color: var(--flare); }
+/* Gauge: a half dial whose needle shows this reaction's share of the top reaction */
+.react-dial { position: relative; width: 64px; height: 34px; margin-bottom: 2px; }
+.react-dial::before { content: ""; position: absolute; inset: 0; border-radius: 64px 64px 0 0;
+  background: conic-gradient(from -80deg at 50% 100%, var(--flare) 0 calc(var(--share, 0) * 160deg), var(--surface-muted) 0 160deg, transparent 0);
+  -webkit-mask: radial-gradient(circle at 50% 100%, transparent 21px, #000 22px); mask: radial-gradient(circle at 50% 100%, transparent 21px, #000 22px);
+  transition: background 1s var(--ease); }
+.react-dial::after { content: ""; position: absolute; inset: 0; border-radius: 64px 64px 0 0; pointer-events: none;
+  background: repeating-conic-gradient(from -80deg at 50% 100%, var(--text-subtle) 0 1.2deg, transparent 1.2deg 20deg);
+  -webkit-mask: radial-gradient(circle at 50% 100%, transparent 27px, #000 28px, #000 31px, transparent 32px); mask: radial-gradient(circle at 50% 100%, transparent 27px, #000 28px, #000 31px, transparent 32px); opacity: .5; }
+.react-needle { position: absolute; left: 50%; bottom: 0; width: 2px; height: 26px; margin-left: -1px; background: var(--text); border-radius: 2px; transform-origin: 50% 100%; transform: rotate(calc(-80deg + var(--share, 0) * 160deg)); transition: transform 1.2s cubic-bezier(.34, 1.56, .64, 1); z-index: 1; }
+.react-needle::after { content: ""; position: absolute; left: -3px; bottom: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--flare); box-shadow: 0 0 0 2px var(--bg); }
+.react-btn:hover .react-needle { transform: rotate(calc(-80deg + var(--share, 0) * 160deg + 6deg)); transition-duration: .3s; }
+.react-count { font-family: var(--font-mono); font-weight: 600; font-size: 1.15rem; font-variant-numeric: tabular-nums; color: var(--text); }
+/* Odometer: each digit is a strip of 0–9 that rolls into place */
+.odo { display: inline-flex; height: 1.2em; line-height: 1.2em; overflow: hidden; }
+.odo-col { display: inline-block; height: 1.2em; overflow: hidden; }
+.odo-strip { display: flex; flex-direction: column; transform: translateY(calc(var(--d, 0) * -1.2em)); transition: transform .9s cubic-bezier(.22, 1.2, .36, 1); }
+.odo-strip span { display: block; height: 1.2em; text-align: center; }
+.react-burst { position: absolute; left: 50%; top: 34%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; pointer-events: none; animation: burst .7s var(--ease-enter) forwards; }
+@keyframes burst { from { opacity: 1; transform: translate(0, 0) scale(1); } to { opacity: 0; transform: translate(var(--bx), var(--by)) scale(.3); } }
+.react-note { font-size: var(--fs-xs); }
+@media (prefers-reduced-motion: reduce) { .odo-strip, .react-needle { transition: none; } .react-btn.is-pop .react-emoji { animation: none; } }

@@ -11,9 +11,9 @@ export const categories = [
 export const featured = ["Taste Is the Last Moat", "Fast Is a Moat", "DesignOps Debt & Process Decay: The Silent Killer of Scalable Design"];
 
 export const articles = [
-  { title: "Taste Is the Last Moat", category: "Craft", url: "https://ganesh-gaikhe90.medium.com/taste-is-the-last-moat-0e07c4a92198", note: "When execution gets cheap, judgement is what's left." },
-  { title: "Fast Is a Moat", category: "Delivery", url: "https://ganesh-gaikhe90.medium.com/fast-is-a-moat-5333e3689ddf", note: "Why speed compounds into a lasting advantage, not just a better quarter." },
-  { title: "DesignOps Debt & Process Decay: The Silent Killer of Scalable Design", category: "Leadership", url: "https://ganesh-gaikhe90.medium.com/designops-debt-process-decay-the-silent-killer-of-scalable-design-0a8dd2fa8b5c", note: "Process decays quietly. This is what it costs before anyone notices." },
+  { slug: "taste-is-the-last-moat", title: "Taste Is the Last Moat", category: "Craft", url: "https://ganesh-gaikhe90.medium.com/taste-is-the-last-moat-0e07c4a92198", note: "When execution gets cheap, judgement is what's left." },
+  { slug: "fast-is-a-moat", title: "Fast Is a Moat", category: "Delivery", url: "https://ganesh-gaikhe90.medium.com/fast-is-a-moat-5333e3689ddf", note: "Why speed compounds into a lasting advantage, not just a better quarter." },
+  { slug: "designops-debt", title: "DesignOps Debt & Process Decay: The Silent Killer of Scalable Design", category: "Leadership", url: "https://ganesh-gaikhe90.medium.com/designops-debt-process-decay-the-silent-killer-of-scalable-design-0a8dd2fa8b5c", note: "Process decays quietly. This is what it costs before anyone notices." },
   { title: "Trust, Transparency & Control: The UX Trifecta for AI in Finance", category: "Finance", url: "https://ganesh-gaikhe90.medium.com/trust-transparency-and-control-the-ux-trifecta-for-ai-in-finance-0f821d1bc07d", note: "What an AI product owes a customer when their money is involved." },
   { title: "From Pixels to Profit: How AI Empowers Designers to Drive Business Outcomes", category: "Finance", url: "https://ganesh-gaikhe90.medium.com/from-pixels-to-profit-how-ai-empowers-designers-to-drive-business-outcomes-ac89e51b452d", note: "Moving design's contribution from deliverables to outcomes." },
   { title: "Clients Want Magic, Teams Need Math", category: "Delivery", url: "https://ganesh-gaikhe90.medium.com/clients-want-magic-teams-need-math-8620c5621cdd", note: "Turning a client's wish for magic into a plan a team can deliver." },
@@ -42,4 +42,16 @@ export const framework = [
   { part: "Insight", share: 35, body: "Problem, observation, insight. The part a reader should be able to repeat to someone else." },
   { part: "Framework", share: 20, body: "A model, checklist or equation the reader can reuse on Monday." },
   { part: "Ending", share: 10, body: "A question worth arguing about in the comments." },
+];
+
+/** Where an essay opens: its page on this site when it has one, otherwise Medium. */
+export const postHref = (a, root) => (a.slug ? `${root}writing/${a.slug}/` : a.url);
+export const isExternal = (a) => !a.slug;
+
+// Reactions offered at the end of every post.
+export const reactions = [
+  { id: "like", emoji: "👍", label: "Like" },
+  { id: "love", emoji: "💖", label: "Super like" },
+  { id: "mind", emoji: "🤯", label: "Mind-blowing" },
+  { id: "wow", emoji: "😮", label: "Surprising" },
 ];

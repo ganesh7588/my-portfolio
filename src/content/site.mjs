@@ -70,8 +70,8 @@ export const situations = [
 export const testimonials = [
   {
     quote: "Ganesh creates clarity where there is ambiguity. He challenges the team to think deeper, keeps everyone aligned to the customer problem, and never asks for a standard solution when a better one is possible.",
-    who: "Trideep Banerjee",
-    what: "VP, I&M",
+    who: "Rohan Mehra",
+    what: "VP, Digital Banking",
   },
 ];
 

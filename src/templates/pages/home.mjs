@@ -1,6 +1,6 @@
 import { page, esc, join, ctaBand } from "../layout.mjs";
 import { hero, principles, situations, testimonials, profile } from "../../content/site.mjs";
-import { articles, featured } from "../../content/writing.mjs";
+import { articles, featured, postHref, isExternal } from "../../content/writing.mjs";
 import { projects } from "../../content/projects.mjs";
 import { featureSplit, isoCollage } from "../blocks.mjs";
 
@@ -124,7 +124,7 @@ export function homePage(studies) {
       <div><p class="eyebrow">Writing</p><h2 id="writing-h">On design at scale and how teams are run.</h2></div>
       <a class="link-arrow" href="writing/">All ${articles.length} essays</a>
     </div>
-    <ul class="article-list">${join(feat, (a) => `<li><a class="article" href="${esc(a.url)}" rel="noopener"><span class="article-title">${esc(a.title)}</span><span class="article-cat">${esc(a.category)}</span><span class="article-note">${esc(a.note)}</span></a></li>`)}</ul>
+    <ul class="article-list">${join(feat, (a) => `<li><a class="article" href="${esc(postHref(a, root))}"${isExternal(a) ? ' rel="noopener"' : ""}><span class="article-title">${esc(a.title)}</span><span class="article-cat">${esc(a.category)}</span><span class="article-note">${esc(a.note)}</span></a></li>`)}</ul>
   </div>
 </section>
 ${ctaBand(root)}`;

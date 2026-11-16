@@ -12,6 +12,9 @@ import { workPage, projectsPage, processPage } from "../src/templates/pages/work
 import { designSystemPage } from "../src/templates/pages/design-system.mjs";
 import { freelancePage, writingPage, aboutPage, contactPage, notFoundPage } from "../src/templates/pages/practice.mjs";
 import { profile } from "../src/content/site.mjs";
+import { postPage } from "../src/templates/pages/post.mjs";
+import { articles, featured } from "../src/content/writing.mjs";
+import { readFile } from "node:fs/promises";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(here, "..");
@@ -29,6 +32,11 @@ pages.set("design-system/index.html", designSystemPage());
 pages.set("freelance/index.html", freelancePage());
 pages.set("writing/index.html", writingPage());
 pages.set("about/index.html", aboutPage());
+const posts = featured.map((t) => articles.find((a) => a.title === t)).filter((a) => a && a.slug);
+for (const a of posts) {
+  const body = await readFile(join(ROOT, "src/content/blog", `${a.slug}.md`), "utf8").catch(() => null);
+  pages.set(`writing/${a.slug}/index.html`, postPage(a, body, posts.filter((o) => o !== a)));
+}
 pages.set("contact/index.html", contactPage());
 pages.set("404.html", notFoundPage());
 

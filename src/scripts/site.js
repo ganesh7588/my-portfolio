@@ -377,6 +377,104 @@
     } else { visible = true; raf = requestAnimationFrame(draw); }
   });
 
+  // Blog: highlight the current heading in the post's contents.
+  var postToc = document.querySelectorAll(".post-toc a");
+  if (postToc.length && "IntersectionObserver" in window) {
+    var pmap = {};
+    postToc.forEach(function (l) { pmap[l.getAttribute("href").slice(1)] = l; });
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        postToc.forEach(function (l) { l.classList.remove("is-current"); });
+        if (pmap[en.target.id]) pmap[en.target.id].classList.add("is-current");
+      });
+    }, { rootMargin: "-20% 0px -70% 0px" });
+    Object.keys(pmap).forEach(function (id) { var el = document.getElementById(id); if (el) pio.observe(el); });
+  }
+
+  // Reactions: odometer counts, gauge needles, and a shared count when the site has storage.
+  document.querySelectorAll("[data-react]").forEach(function (box) {
+    var post = box.getAttribute("data-react");
+    var btns = Array.prototype.slice.call(box.querySelectorAll(".react-btn"));
+    var note = box.querySelector("[data-react-note]");
+    var key = "react:" + post, mineKey = "react-mine:" + post;
+    var store = { get: function (k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+                  set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+    var counts = {}, mine = store.get(mineKey, {}), shared = false;
+    btns.forEach(function (b) { counts[b.getAttribute("data-react-id")] = 0; });
+
+    // Build enough digit columns for a number and roll each to its digit.
+    var setOdo = function (odo, n) {
+      var digits = String(Math.max(0, n)).split("");
+      var cols = odo.querySelectorAll(".odo-col");
+      while (cols.length < digits.length) {
+        var c = cols[0].cloneNode(true);
+        c.querySelector(".odo-strip").style.setProperty("--d", 0);
+        odo.insertBefore(c, odo.firstChild);
+        cols = odo.querySelectorAll(".odo-col");
+      }
+      while (cols.length > digits.length) { odo.removeChild(cols[0]); cols = odo.querySelectorAll(".odo-col"); }
+      requestAnimationFrame(function () {
+        cols.forEach(function (c, i) { c.querySelector(".odo-strip").style.setProperty("--d", digits[i]); });
+      });
+    };
+
+    var render = function () {
+      var max = 0;
+      Object.keys(counts).forEach(function (k) { max = Math.max(max, counts[k]); });
+      btns.forEach(function (b) {
+        var id = b.getAttribute("data-react-id"), n = counts[id] || 0;
+        setOdo(b.querySelector("[data-odo]"), n);
+        b.querySelector("[data-react-sr]").textContent = n;
+        b.setAttribute("aria-label", b.querySelector(".react-label").textContent + ", " + n + (n === 1 ? " reaction" : " reactions"));
+        b.setAttribute("aria-pressed", String(!!mine[id]));
+        b.style.setProperty("--share", max ? (n / max).toFixed(3) : 0);
+      });
+    };
+
+    var burst = function (b) {
+      if (reduce) return;
+      var colors = ["#ff9a62", "#1b36ff", "#c2410c", "#93a2ff", "#1f6b3f"];
+      for (var i = 0; i < 10; i++) {
+        var p = document.createElement("span");
+        p.className = "react-burst";
+        var ang = (i / 10) * Math.PI * 2, dist = 30 + Math.random() * 18;
+        p.style.setProperty("--bx", Math.cos(ang) * dist + "px");
+        p.style.setProperty("--by", Math.sin(ang) * dist + "px");
+        p.style.background = colors[i % colors.length];
+        b.appendChild(p);
+        setTimeout(function (el) { return function () { el.remove(); }; }(p), 750);
+      }
+    };
+
+    // Start from this browser's saved counts; replace with shared counts if the API answers.
+    var local = store.get(key, null);
+    if (local) Object.keys(counts).forEach(function (k) { counts[k] = local[k] || 0; });
+    render();
+    fetch("/api/reactions?post=" + encodeURIComponent(post), { headers: { Accept: "application/json" } })
+      .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (d) { shared = true; counts = d.counts; render(); })
+      .catch(function () { if (note) note.hidden = false; });
+
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var id = b.getAttribute("data-react-id"), on = !mine[id], delta = on ? 1 : -1;
+        mine[id] = on; store.set(mineKey, mine);
+        counts[id] = Math.max(0, (counts[id] || 0) + delta);
+        if (!shared) store.set(key, counts);
+        b.classList.remove("is-pop"); void b.offsetWidth;
+        if (on) { b.classList.add("is-pop"); burst(b); }
+        render();
+        if (shared) {
+          fetch("/api/reactions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ post: post, id: id, delta: delta }) })
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (d) { if (d && d.counts) { counts = d.counts; render(); } })
+            .catch(function () {});
+        }
+      });
+    });
+  });
+
   // Design-system token demo.
   var themes = {
     light: { "--d-bg": "#f6f6f2", "--d-surface": "#ffffff", "--d-ink": "#111111", "--d-muted": "#5c5c63", "--d-line": "#e3e3dc", "--d-accent": "#1b36ff", "--d-accent-ink": "#ffffff" },

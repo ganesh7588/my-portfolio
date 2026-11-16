@@ -5,7 +5,9 @@ The site ships with **no placeholders on screen**: `npm run check` fails the bui
 ## Client permissions
 - [ ] **Projects page**: BHIM, TMB, the public-sector bank card app, HFCB, AHIDF, The Privileged Club and the healthcare voucher work are shown with *descriptive* names (`publicName`). Set `nameApproved: true` in `src/content/projects.mjs` for each client who agrees to be named.
 - [ ] **Case studies are white-labelled** under codenames (Nivara, Mahali, Aster360, MY360, Lumora). Check the codenames are free of clashes in your markets before going live. Screens still show real geography and currencies (Mahali: Malawi, Zambia, Botswana, Zimbabwe, MWK), which an informed reader could use to identify the client. Decide whether that is acceptable.
-- [ ] The testimonial on the Mahali case study names a real person and organisation. Confirm they are happy to be quoted on a white-labelled case study.
+- [ ] The testimonial now runs under a pseudonym ("Rohan Mehra, VP, Digital Banking"), in line with the confidentiality note. The quote itself is real; confirm the person is happy for it to appear this way.
+- [ ] **Blog posts**: paste the full text of each featured essay into `src/content/blog/<slug>.md` (taste-is-the-last-moat, fast-is-a-moat, designops-debt). Until a file exists, that post page shows the summary and a link to Medium.
+- [ ] **Reaction counts**: to count reactions across all visitors, add an Upstash Redis database to the Vercel project (Storage → Upstash → Redis). Vercel sets `KV_REST_API_URL` and `KV_REST_API_TOKEN` automatically. Without it, reactions are remembered only in each visitor's own browser.
 - [ ] Confirm **IdentitySense** and **AuthSense** can be shown publicly as Winjit products.
 
 ## Facts to check
